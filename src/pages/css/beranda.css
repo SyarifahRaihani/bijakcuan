@@ -1,0 +1,98 @@
+#hero {
+	padding: 160px 0;
+	background-color: var(--secondary);
+}
+#hero h1 {
+	color: var(--white-primary);
+}
+#hero p {
+	color: var(--white-secondary);
+	margin-bottom: 48px;
+}
+#trailer,
+#cta,
+#benefit,
+#testimonial {
+	padding: 84px 0;
+}
+#trailer {
+	background-color: var(--secondary);
+}
+#trailer img {
+	width: 100%;
+	border-radius: 24px;
+}
+#trailer h6 {
+	color: var(--white-secondary);
+}
+#trailer .position-absolute {
+	width: fit-content;
+}
+#cta img {
+	border-radius: 24px;
+	width: 100%;
+}
+#benefit {
+	background-color: var(--white-primary);
+	color: var(--black-primary);
+}
+#benefit svg {
+	height: 56px;
+}
+#benefit .card {
+	padding: 24px;
+	height: fit-content;
+}
+#benefit .card.primary {
+	border-color: var(--white-secondary);
+	background-color: var(--secondary);
+	color: var(--white-primary);
+}
+#benefit .card.primary {
+	padding-top: 48px;
+	padding-bottom: 48px;
+}
+#benefit .card.primary .btn-outline-dark {
+	border-color: var(--white-primary);
+	color: var(--white-primary);
+	padding: 8px 24px;
+	border-radius: 24px;
+	cursor: default;
+}
+#benefit .card.primary .btn-outline-dark:hover {
+	background-color: var(--secondary);
+	border-color: var(--white-primary);
+	color: var(--white-primary);
+	padding: 8px 24px;
+	border-radius: 24px;
+}
+#benefit .card-header,
+#benefit .card-footer {
+	background: none;
+	border: none;
+	padding: 24px;
+}
+#benefit .btn-outline-dark {
+	border-color: var(--black-primary);
+	color: var(--black-primary);
+	padding: 8px 24px;
+	border-radius: 24px;
+	cursor: default;
+}
+#benefit .btn-outline-dark:hover {
+	background-color: var(--white-primary);
+	border-color: var(--black-primary);
+	color: var(--black-primary);
+	padding: 8px 24px;
+	border-radius: 24px;
+}
+#benefit .discount {
+	background-color: var(--alert);
+	color: var(--white-primary);
+	text-decoration: line-through;
+	width: 124px;
+	margin: 0 auto;
+}
+#benefit .price {
+	margin: 24px 0;
+}
