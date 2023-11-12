@@ -1,8 +1,9 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom"
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom"
 import Navbar from "./components/navbar"
 import Footer from "./components/footer"
-import NotFound from "./pages/NotFound"
 import Beranda from "./pages/Beranda"
+import Masuk from "./pages/Masuk"
+import Daftar from "./pages/Daftar"
 
 export default function App() {
 	return (
@@ -10,7 +11,9 @@ export default function App() {
 			<Navbar />
 			<Routes>
 				<Route path="/" element={<Beranda />} />
-				<Route path="*" element={<NotFound />} />
+				<Route path="/masuk" element={<Masuk />} />
+				<Route path="/daftar" element={<Daftar />} />
+				<Route path="*" element={<Navigate to="/" />} />
 			</Routes>
 			<Footer />
 		</BrowserRouter>
