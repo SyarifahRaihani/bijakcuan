@@ -23,38 +23,38 @@ export default function Footer() {
 					<div className="col-lg-2">
 						<h6 className="">Halaman</h6>
 						<div className="d-flex flex-column gap-2">
-							<Link href={"/program"}>Program</Link>
-							<Link href={"/promo"}>Promo</Link>
+							<Link to={"/program"}>Program</Link>
+							<Link to={"/promo"}>Promo</Link>
 						</div>
 					</div>
 					<div className="col-lg-2">
 						<h6>Komunitas</h6>
 						<div className="d-flex flex-column gap-2">
-							<Link href={"/event"}>Event</Link>
-							<Link href={"/artikel"}>Artikel</Link>
+							<Link to={"/event"}>Event</Link>
+							<Link to={"/artikel"}>Artikel</Link>
 						</div>
 					</div>
 					<div className="col-lg-2">
 						<h6>Hubungi kami</h6>
 						<div className="d-flex flex-column gap-2">
-							<Link href={"/bantuan"}>Pusat Bantuan</Link>
-							<Link href={"/bantuan#kontak"}>Kontak</Link>
+							<Link to={"/bantuan"}>Pusat Bantuan</Link>
+							<Link to={"/bantuan#kontak"}>Kontak</Link>
 						</div>
 					</div>
 
 					<div className="col-lg-2">
 						<h6>Media Sosial</h6>
 						<div className="d-flex flex-row gap-2">
-							<Link href={"#"}>
+							<Link to={"#"}>
 								<FontAwesomeIcon icon={faTwitter}></FontAwesomeIcon>
 							</Link>
-							<Link href={"#"}>
+							<Link to={"#"}>
 								<FontAwesomeIcon icon={faInstagram}></FontAwesomeIcon>
 							</Link>
-							<Link href={"#"}>
+							<Link to={"#"}>
 								<FontAwesomeIcon icon={faYoutube}></FontAwesomeIcon>
 							</Link>
-							<Link href={"#"}>
+							<Link to={"#"}>
 								<FontAwesomeIcon icon={faWhatsapp}></FontAwesomeIcon>
 							</Link>
 						</div>

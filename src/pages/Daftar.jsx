@@ -91,7 +91,7 @@ export default function Daftar() {
 								</div>
 
 								<div className="d-grid gap mb-4">
-									<Link href={"/masuk"} className="btn btn-primary">
+									<Link to={"/masuk"} className="btn btn-primary">
 										Daftar
 									</Link>
 								</div>

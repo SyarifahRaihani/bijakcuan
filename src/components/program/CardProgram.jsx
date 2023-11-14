@@ -79,7 +79,7 @@ export default function CardProgram() {
 				</div>
 				<div id="content-checkout">
 					<Link
-						href={`${isLoggedIn ? `/checkout?paket=${paket}` : "/daftar"}`}
+						to={`${isLoggedIn ? `/checkout?paket=${paket}` : "/daftar"}`}
 						className="btn btn-primary w-100">
 						Gabung Sekarang
 					</Link>

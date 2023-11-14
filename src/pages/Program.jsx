@@ -23,7 +23,7 @@ export default function Program() {
 					<div className="d-block text-center">
 						<h1>Pelatihan Keuangan Untuk Sukses Finansial</h1>
 						<p>Majukan Bisnismu Dengan Pengelolaan Keuangan Yang Baik</p>
-						<Link href={"#content"} className="btn btn-primary">
+						<Link to={"#content"} className="btn btn-primary">
 							Gabung Sekarang
 						</Link>
 					</div>
