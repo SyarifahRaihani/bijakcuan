@@ -6,7 +6,7 @@ import price from "../../data/program-price"
 import FormatCurrency from "../../components/format-currency"
 
 export default function CardProgram() {
-	const [paket, setPaket] = useState("monthly")
+	const [paket, setPaket] = useState("Bulanan")
 	const [isLoggedIn, setIsLoggedIn] = useState(false)
 
 	useEffect(() => {
@@ -30,27 +30,27 @@ export default function CardProgram() {
 						<div className="col">
 							<div
 								className={`btn ${
-									paket === "trial" ? "btn-primary" : "btn-outline-primary"
+									paket === "Trial" ? "btn-primary" : "btn-outline-primary"
 								}`}
-								onClick={() => handlePaketChange("trial")}>
+								onClick={() => handlePaketChange("Trial")}>
 								Trial
 							</div>
 						</div>
 						<div className="col">
 							<div
 								className={`btn ${
-									paket === "monthly" ? "btn-primary" : "btn-outline-primary"
+									paket === "Bulanan" ? "btn-primary" : "btn-outline-primary"
 								}`}
-								onClick={() => handlePaketChange("monthly")}>
+								onClick={() => handlePaketChange("Bulanan")}>
 								Bulanan
 							</div>
 						</div>
 						<div className="col">
 							<div
 								className={`btn ${
-									paket === "lifetime" ? "btn-primary" : "btn-outline-primary"
+									paket === "Lifetime" ? "btn-primary" : "btn-outline-primary"
 								}`}
-								onClick={() => handlePaketChange("lifetime")}>
+								onClick={() => handlePaketChange("Lifetime")}>
 								Lifetime
 							</div>
 						</div>
