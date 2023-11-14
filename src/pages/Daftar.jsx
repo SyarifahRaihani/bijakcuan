@@ -14,7 +14,7 @@ export default function Daftar() {
 							style={{ borderRadius: "1rem" }}>
 							<div className="card-body p-5 text-center">
 								<Link
-									href="/"
+									to="/"
 									className="d-flex align-items-center justify-content-start gap-2 mb-4">
 									<FontAwesomeIcon
 										icon={faArrowLeft}
@@ -91,7 +91,7 @@ export default function Daftar() {
 								</div>
 
 								<div className="d-grid gap mb-4">
-									<Link href={"/masuk"} className="btn btn-primary">
+									<Link to={"/masuk"} className="btn btn-primary">
 										Daftar
 									</Link>
 								</div>
@@ -99,7 +99,7 @@ export default function Daftar() {
 								<p>
 									Sudah memiliki akun?{" "}
 									<Link
-										href="/masuk"
+										to="/masuk"
 										className="text-dark text-decoration-underline">
 										Masuk sekarang
 									</Link>
