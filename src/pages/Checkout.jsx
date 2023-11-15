@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 import "./css/checkout.css"
 import { useState } from "react"
 import { useSearchParams } from "react-router-dom"
@@ -39,7 +40,7 @@ export default function Checkout() {
 
 	let random = 23
 	const [discount, setDiscount] = useState(0)
-	const [totalPrice, setTotalPrice] = useState(priceData[paket] - random)
+	const [totalPrice] = useState(priceData[paket] - random)
 
 	if (paket === "Trial") {
 		random = 0
