@@ -4,7 +4,7 @@ import { faArrowLeft } from "@fortawesome/free-solid-svg-icons"
 import { Link } from "react-router-dom"
 import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom/dist"
-import { SITE_URL, API_PORT } from "../utils/env"
+import { SITE_URL } from "../utils/env"
 import { Cookies } from "react-cookie"
 import axios from "axios"
 
@@ -37,7 +37,7 @@ export default function Masuk() {
 		setWrongUser("")
 		setWrongPass("")
 		axios
-			.post(`${SITE_URL}:${API_PORT}/api/masuk`, values)
+			.post(`${SITE_URL}/api/masuk`, values)
 			.then((res) => {
 				if (res.data.wrongUser) {
 					const wrong = res.data.wrongUser
