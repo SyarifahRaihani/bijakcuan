@@ -1,7 +1,7 @@
 {
 	"name": "bijakcuan-api",
 	"version": "0.0.0",
-	"private": true,
+	"main": "server.cjs",
 	"scripts": {
 		"start": "node server.cjs"
 	},
