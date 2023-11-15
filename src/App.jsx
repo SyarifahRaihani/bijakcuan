@@ -8,7 +8,9 @@ import Daftar from "./pages/Daftar"
 import Program from "./pages/Program"
 import Checkout from "./pages/Checkout"
 import Event from "./pages/Event"
-import DetaiEvent from "./pages/DetailEvent"
+import DetailEvent from "./pages/DetailEvent"
+import Promo from "./pages/Promo"
+import NotFound from "./pages/NotFound"
 
 export default function App() {
 	return (
@@ -24,8 +26,9 @@ export default function App() {
 				<Route path="/program" element={<Program />} />
 				<Route path="/event" element={<Event />} />
 				<Route path="/checkout" element={<Checkout />} />
-				<Route path="/detailevent" element={<DetaiEvent />} />
-				<Route path="*" element={<Navigate to="/" />} />
+				<Route path="/event/detail" element={<DetailEvent />} />
+				<Route path="/promo" element={<Promo />} />
+				<Route path="*" element={<NotFound />} />
 			</Routes>
 			<Footer />
 		</BrowserRouter>
