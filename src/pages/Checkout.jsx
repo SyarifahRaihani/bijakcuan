@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/rules-of-hooks */
 import "./css/checkout.css"
 import { useState } from "react"
 import { useSearchParams } from "react-router-dom"
