@@ -2,8 +2,60 @@ import "./css/daftar.css"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons"
 import { Link } from "react-router-dom"
+import { Cookies } from "react-cookie"
+import { SITE_URL } from "../utils/env"
+import { useNavigate } from "react-router-dom/dist"
+import { useState, useEffect } from "react"
+import axios from "axios"
 
 export default function Daftar() {
+	const cookies = new Cookies()
+	const navigate = useNavigate()
+	const [failed, setFailed] = useState("")
+
+	useEffect(() => {
+		if (cookies.get("auth-login")) {
+			navigate("/")
+		}
+	}, [])
+
+	const [values, setValues] = useState({
+		username: "",
+		name: "",
+		email: "",
+		phone: "",
+		password: "",
+	})
+
+	const handleInput = (event) => {
+		setValues((prev) => ({
+			...prev,
+			[event.target.name]: event.target.value,
+		}))
+	}
+
+	const handleSubmit = async (event) => {
+		event.preventDefault()
+		setFailed("")
+		axios
+			.post(`${SITE_URL}/api/daftar`, values)
+			.then((res) => {
+				if (res.data.failed) {
+					const failed = res.data.failed
+					setFailed(failed)
+					return
+				} else {
+					const token = res.data.token
+					cookies.set("auth-login", token, { secure: true })
+					navigate("/")
+					window.location.reload()
+				}
+			})
+			.catch((error) => {
+				console.error("Error:", error)
+			})
+	}
+
 	return (
 		<main id="daftar">
 			<div className="container py-5 h-100">
@@ -33,77 +85,74 @@ export default function Daftar() {
 								/>
 								<h3 className="mb-1 fw-bold">Daftar</h3>
 								<p className="mb-4">Mulai perjalanan Anda bersama BijakCuan</p>
-
-								<div className="d-flex flex-column gap-2">
-									<div className="form-outline">
+								{failed && (
+									<div id="wrong" className="alert alert-danger mb-4">
+										<p>{failed}</p>
+									</div>
+								)}
+								<div className="d-flex flex-column gap-4">
+									<form
+										onSubmit={handleSubmit}
+										className="form-outline d-flex flex-column gap-2">
 										<input
-											type="name"
+											onChange={handleInput}
+											type="text"
+											name="name"
 											id="name"
 											className="form-control"
 											placeholder="Nama (Maks. 50 Karakter)"
+											required
 										/>
-									</div>
-
-									<div className="form-outline">
 										<input
-											type="username"
+											onChange={handleInput}
+											type="text"
+											name="username"
 											id="username"
 											className="form-control"
 											placeholder="Username"
+											required
 										/>
-									</div>
-
-									<div className="form-outline">
 										<input
+											onChange={handleInput}
 											type="password"
+											name="password"
 											id="password"
 											className="form-control"
 											placeholder="Password"
+											required
 										/>
-									</div>
-
-									<div className="form-outline">
 										<input
+											onChange={handleInput}
 											type="email"
+											name="email"
 											id="email"
 											className="form-control"
 											placeholder="Alamat Email"
+											required
 										/>
-									</div>
-
-									<div className="form-outline">
 										<input
+											onChange={handleInput}
 											type="text"
-											id="noTlp"
+											name="phone"
+											id="phone"
 											className="form-control"
 											placeholder="No Telepon"
+											required
 										/>
-									</div>
+										<button type="submit" className="btn btn-primary mt-3">
+											Daftar
+										</button>
+									</form>
 
-									<div className="form-outline mb-4">
-										<input
-											type="text"
-											id="domisili"
-											className="form-control"
-											placeholder="Domisili"
-										/>
-									</div>
+									<p>
+										Sudah memiliki akun?{" "}
+										<Link
+											to="/masuk"
+											className="text-dark text-decoration-underline">
+											Masuk sekarang
+										</Link>
+									</p>
 								</div>
-
-								<div className="d-grid gap mb-4">
-									<Link to={"/masuk"} className="btn btn-primary">
-										Daftar
-									</Link>
-								</div>
-
-								<p>
-									Sudah memiliki akun?{" "}
-									<Link
-										to="/masuk"
-										className="text-dark text-decoration-underline">
-										Masuk sekarang
-									</Link>
-								</p>
 							</div>
 						</div>
 					</div>
