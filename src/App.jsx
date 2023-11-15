@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom"
+import { BrowserRouter, Routes, Route } from "react-router-dom"
 import { Helmet } from "react-helmet"
 import Navbar from "./components/navbar"
 import Footer from "./components/footer"
