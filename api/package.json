@@ -1,9 +1,9 @@
 {
 	"name": "bijakcuan-api",
 	"version": "0.0.0",
-	"main": "server.cjs",
+	"main": "index.js",
 	"scripts": {
-		"start": "node server.cjs"
+		"start": "node index.js"
 	},
 	"dependencies": {
 		"bcrypt": "^5.1.1",
