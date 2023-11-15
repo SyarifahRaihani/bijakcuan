@@ -7,7 +7,7 @@ import {
 	faCommentDots,
 	faCircleCheck,
 } from "@fortawesome/free-solid-svg-icons"
-import NavProgram from "./components/Program/NavProgram"
+import NavProgram from "../components/program/NavProgram"
 import CardProgram from "../components/program/CardProgram"
 
 export default function Program() {

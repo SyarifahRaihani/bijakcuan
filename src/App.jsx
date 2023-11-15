@@ -20,7 +20,7 @@ export default function App() {
 				<Route path="/masuk" element={<Masuk />} />
 				<Route path="/daftar" element={<Daftar />} />
 				<Route path="/program" element={<Program />} />
-				{/* <Route path="/checkout" element={<Checkout />} /> */}
+				<Route path="/checkout" element={<Checkout />} />
 				<Route path="*" element={<Navigate to="/" />} />
 			</Routes>
 			<Footer />
