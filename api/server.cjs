@@ -96,6 +96,10 @@ app.post("/api/masuk", async (req, res) => {
 	}
 })
 
+app.get("/", (req, res) => {
+	res.send(`Server listening on port ${PORT}`)
+})
+
 app.listen(PORT, () => {
 	console.log(`Server is running on PORT ${PORT}`)
 })
