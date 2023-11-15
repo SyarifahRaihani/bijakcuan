@@ -2,13 +2,63 @@ import "./css/daftar.css"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons"
 import { Link } from "react-router-dom"
-import { useLocation } from "react-router-dom"
+import { useEffect, useState } from "react"
+import { useNavigate } from "react-router-dom/dist"
+import { SITE_URL } from "../utils/env"
+import { Cookies } from "react-cookie"
+import axios from "axios"
 
 export default function Masuk() {
-	const router = useLocation()
-	const handleLogin = () => {
-		localStorage.setItem("isLoggedIn", true)
-		router.reload()
+	const cookies = new Cookies()
+	const navigate = useNavigate()
+	const [wrongUser, setWrongUser] = useState("")
+	const [wrongPass, setWrongPass] = useState("")
+
+	useEffect(() => {
+		if (cookies.get("auth-login")) {
+			navigate("/")
+		}
+	}, [])
+
+	const [values, setValues] = useState({
+		username: "",
+		password: "",
+	})
+
+	const handleInput = (event) => {
+		setValues((prev) => ({
+			...prev,
+			[event.target.name]: event.target.value,
+		}))
+	}
+
+	const handleSubmit = async (event) => {
+		event.preventDefault()
+		setWrongUser("")
+		setWrongPass("")
+		axios
+			.post(`${SITE_URL}/api/masuk`, values)
+			.then((res) => {
+				if (res.data.wrongUser) {
+					const wrong = res.data.wrongUser
+					setWrongUser(wrong)
+					return
+				} else if (res.data.wrongPass) {
+					const wrong = res.data.wrongPass
+					setWrongPass(wrong)
+					return
+				} else {
+					const token = res.data.token
+
+					cookies.set("auth-login", token, { secure: true })
+
+					navigate("/")
+					window.location.reload()
+				}
+			})
+			.catch((error) => {
+				console.error("Error:", error)
+			})
 	}
 
 	return (
@@ -40,68 +90,53 @@ export default function Masuk() {
 								/>
 								<h3 className="mb-1 fw-bold">Masuk</h3>
 								<p className="mb-4 ">Kembali bertumbuh bersama BijakCuan</p>
-								<div className="d-flex flex-column gap-2">
-									<div className="form-outline">
+								{wrongUser || wrongPass ? (
+									<div id="wrong" className="alert alert-danger mb-4">
+										<p>{wrongUser || wrongPass}</p>
+									</div>
+								) : (
+									<div></div>
+								)}
+								<div className="d-flex flex-column gap-4">
+									<form
+										onSubmit={handleSubmit}
+										className="form-outline d-flex flex-column gap-2">
 										<input
-											type="username"
+											onChange={handleInput}
+											type="text"
+											name="username"
 											id="username"
-											className="form-control"
+											className={`form-control ${
+												wrongUser ? "border-danger text-danger" : ""
+											}`}
 											placeholder="Username/email"
+											required
 										/>
-									</div>
-
-									<div className="form-outline mb-4">
 										<input
+											onChange={handleInput}
 											type="password"
+											name="password"
 											id="password"
-											className="form-control"
+											className={`form-control ${
+												wrongPass ? "border-danger text-danger" : ""
+											}`}
 											placeholder="Password"
+											required
 										/>
-									</div>
-								</div>
-								<div className="mb-4 w-100 d-flex justify-content-between">
-									<div>
-										<div className="form-check">
-											<input
-												className="form-check-input"
-												type="checkbox"
-												value=""
-												id="form2Example34"
-												checked
-											/>
-											<label
-												className="form-check-label"
-												htmlFor="form2Example34">
-												{" "}
-												Ingat saya{" "}
-											</label>
-										</div>
-									</div>
+										<button type="submit" className="btn btn-primary mt-3">
+											Masuk
+										</button>
+									</form>
 
-									<div>
-										<a href="#" className="text-decoration-none">
-											Lupa password?
-										</a>
-									</div>
+									<p>
+										Belum memiliki akun?{" "}
+										<Link
+											to="/daftar"
+											className="text-dark text-decoration-underline">
+											Daftar sekarang
+										</Link>
+									</p>
 								</div>
-
-								<div className="d-grid gap mb-4">
-									<Link
-										onClick={handleLogin}
-										to={"/profil"}
-										className="btn btn-primary">
-										Masuk
-									</Link>
-								</div>
-
-								<p>
-									Belum memiliki akun?{" "}
-									<Link
-										to="/daftar"
-										className="text-dark text-decoration-underline">
-										Daftar sekarang
-									</Link>
-								</p>
 							</div>
 						</div>
 					</div>

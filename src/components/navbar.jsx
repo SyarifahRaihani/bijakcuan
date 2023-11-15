@@ -1,15 +1,17 @@
 import { Link } from "react-router-dom"
 import { useLocation } from "react-router-dom"
 import { useState, useEffect } from "react"
+import { Cookies } from "react-cookie"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faUser } from "@fortawesome/free-solid-svg-icons"
 
 export default function Navbar() {
 	const route = useLocation()
 	const [isLoggedIn, setIsLoggedIn] = useState(false)
+	const cookies = new Cookies()
 
 	useEffect(() => {
-		const isLoggedInUser = localStorage.getItem("isLoggedIn")
+		const isLoggedInUser = cookies.get("auth-login")
 		if (isLoggedInUser) {
 			setIsLoggedIn(true)
 		}
@@ -86,7 +88,7 @@ export default function Navbar() {
 								<Link to="/profil">
 									<FontAwesomeIcon
 										icon={faUser}
-										className={`btn ${
+										className={`btn d-flex mx-auto ${
 											route.pathname === "/profil"
 												? "btn-dark"
 												: "btn-outline-dark"
