@@ -1,7 +1,7 @@
 import { useState } from "react"
-import TentangProgram from "./ContentTentang"
-import KurikulumProgram from "./ContentKurikulum"
-import AlatProgram from "./ContentAlat"
+// import TentangProgram from "./ContentTentang"
+// import KurikulumProgram from "./ContentKurikulum"
+// import AlatProgram from "./ContentAlat"
 
 export default function NavProgram() {
 	const [tab, setTab] = useState(0)
@@ -29,9 +29,9 @@ export default function NavProgram() {
 				</div>
 			</div>
 			<div id="content-program">
-				{tab === 0 && <TentangProgram />}
+				{/* {tab === 0 && <TentangProgram />}
 				{tab === 1 && <KurikulumProgram />}
-				{tab === 2 && <AlatProgram />}
+				{tab === 2 && <AlatProgram />} */}
 			</div>
 		</section>
 	)
