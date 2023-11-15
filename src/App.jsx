@@ -7,6 +7,8 @@ import Masuk from "./pages/Masuk"
 import Daftar from "./pages/Daftar"
 import Program from "./pages/Program"
 import Checkout from "./pages/Checkout"
+import Promo from "./pages/Promo"
+import NotFound from "./pages/NotFound"
 
 export default function App() {
 	return (
@@ -21,7 +23,8 @@ export default function App() {
 				<Route path="/daftar" element={<Daftar />} />
 				<Route path="/program" element={<Program />} />
 				<Route path="/checkout" element={<Checkout />} />
-				<Route path="*" element={<Navigate to="/" />} />
+				<Route path="/promo" element={<Promo />} />
+				<Route path="*" element={<NotFound />} />
 			</Routes>
 			<Footer />
 		</BrowserRouter>
