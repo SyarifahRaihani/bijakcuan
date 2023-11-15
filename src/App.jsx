@@ -11,6 +11,8 @@ import Event from "./pages/Event"
 import DetailEvent from "./pages/DetailEvent"
 import Promo from "./pages/Promo"
 import NotFound from "./pages/NotFound"
+import Artikel from "./pages/Artikel"
+import DetailArtikel from "./pages/DetailArtikel"
 
 export default function App() {
 	return (
@@ -28,6 +30,8 @@ export default function App() {
 				<Route path="/checkout" element={<Checkout />} />
 				<Route path="/event/detail" element={<DetailEvent />} />
 				<Route path="/promo" element={<Promo />} />
+				<Route path="/artikel" element={<Artikel />} />
+				<Route path="/detail/:id" element={<DetailArtikel />} />
 				<Route path="*" element={<NotFound />} />
 			</Routes>
 			<Footer />
