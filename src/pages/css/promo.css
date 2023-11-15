@@ -1,0 +1,11 @@
+#promo .card {
+	height: 100%;
+}
+#cta-promo {
+	padding: 84px 0;
+	background-size: cover;
+	background-repeat: no-repeat;
+}
+#cta-promo h2 {
+	color: var(--white-primary);
+}
