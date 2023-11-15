@@ -39,7 +39,7 @@ export default function Checkout() {
 
 	let random = 23
 	const [discount, setDiscount] = useState(0)
-	const [totalPrice, setTotalPrice] = useState(priceData[paket] - random)
+	const [totalPrice] = useState(priceData[paket] - random)
 
 	if (paket === "Trial") {
 		random = 0

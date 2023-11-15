@@ -1,0 +1,26 @@
+[
+	{
+		"id": 1,
+		"username": "afrizalyogi",
+		"name": "Afrizal Yogi",
+		"email": "afrizalyogi.id@gmail.com",
+		"phone": "0812345678",
+		"password": "$2b$10$XxO/vPx5hBdo9gnGN8KDtOpoiPYTvRgm4NlwZfSL4TNN4HIIY53CC"
+	},
+	{
+		"id": 2,
+		"username": "achmadimam",
+		"name": "Achmad Imam",
+		"email": "achmadimam@gmail.com",
+		"phone": "087651231231",
+		"password": "$2b$10$x10ci0CuR78V5H9VnuUvwOoY/Kjaggs61.O7FeWy508xM5Ol.FYpa"
+	},
+	{
+		"id": 3,
+		"username": "efrandipebrian",
+		"name": "Efrandi Pebrian",
+		"email": "efrandipebrian@gmail.com",
+		"phone": "08766753423",
+		"password": "$2b$10$Ct8diGlE0apgsS3qr5KkOuh2IVSF6SdrXYQ3VZZTHLtp5W9S1vtUq"
+	}
+]
