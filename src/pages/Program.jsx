@@ -8,7 +8,7 @@ import {
 	faCircleCheck,
 } from "@fortawesome/free-solid-svg-icons"
 import NavProgram from "./components/Program/NavProgram"
-// import CardProgram from "../components/Program/CardProgram"
+import CardProgram from "../components/program/CardProgram"
 
 export default function Program() {
 	return (
@@ -59,7 +59,9 @@ export default function Program() {
 						<div className="col">
 							<NavProgram />
 						</div>
-						<div className="col-lg-5">{/* <CardProgram /> */}</div>
+						<div className="col-lg-5">
+							<CardProgram />
+						</div>
 					</div>
 				</div>
 			</section>
