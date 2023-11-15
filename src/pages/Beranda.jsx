@@ -22,7 +22,7 @@ export default function Beranda() {
 						darimu"
 						<br />- Robert Kiyosaki
 					</p>
-					<Link href={"/program"} className="btn btn-primary">
+					<Link to={"/program"} className="btn btn-primary">
 						Gabung Sekarang
 					</Link>
 				</div>
@@ -68,7 +68,7 @@ export default function Beranda() {
 							<h2 className="mb-4">
 								Optimalkan KEUANGAN Anda dengan STRATEGI HEBAT bersama Bijakcuan
 							</h2>
-							<Link href={"/program"} className="btn btn-primary">
+							<Link to={"/program"} className="btn btn-primary">
 								Gabung Sekarang
 							</Link>
 						</div>
@@ -110,7 +110,7 @@ export default function Beranda() {
 										<p>Rp 49.000</p>
 									</div>
 									<h2 className="price">Gratis</h2>
-									<Link href={"/program"} className="w-100 btn btn-primary">
+									<Link to={"/program"} className="w-100 btn btn-primary">
 										Dapatkan Sekarang
 									</Link>
 								</div>
@@ -128,7 +128,7 @@ export default function Beranda() {
 										<p>Rp 199.000</p>
 									</div>
 									<h2 className="price">Rp 99.000</h2>
-									<Link href={"/program"} className="w-100 btn btn-primary">
+									<Link to={"/program"} className="w-100 btn btn-primary">
 										Dapatkan Sekarang
 									</Link>
 								</div>
@@ -146,7 +146,7 @@ export default function Beranda() {
 										<p>Rp 599.000</p>
 									</div>
 									<h2 className="price">Rp 249.000</h2>
-									<Link href={"/program"} className="w-100 btn btn-primary">
+									<Link to={"/program"} className="w-100 btn btn-primary">
 										Dapatkan Sekarang
 									</Link>
 								</div>

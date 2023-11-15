@@ -21,7 +21,7 @@ export default function Masuk() {
 							style={{ borderRadius: "1rem" }}>
 							<div className="card-body p-5 text-center">
 								<Link
-									href="/"
+									to="/"
 									className="d-flex align-items-center justify-content-start gap-2 mb-4">
 									<FontAwesomeIcon
 										icon={faArrowLeft}
@@ -88,7 +88,7 @@ export default function Masuk() {
 								<div className="d-grid gap mb-4">
 									<Link
 										onClick={handleLogin}
-										href={"/profil"}
+										to={"/profil"}
 										className="btn btn-primary">
 										Masuk
 									</Link>
@@ -97,7 +97,7 @@ export default function Masuk() {
 								<p>
 									Belum memiliki akun?{" "}
 									<Link
-										href="/daftar"
+										to="/daftar"
 										className="text-dark text-decoration-underline">
 										Daftar sekarang
 									</Link>
