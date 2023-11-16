@@ -20,7 +20,7 @@ export default function Bantuan(){
 				rel="stylesheet"></link>
 			<section id="deskripsi">
             <img src="/assets/pusat-bantuan/bantuan.png" alt="Pusat Bantuan" style={{ width: '100%' }} />
-            
+
 				<div className="container py-5">
 					<div className="col">
 						<p
