@@ -10,10 +10,11 @@ import GenerateOrderId from "../components/checkout/generate-order-id"
 import priceData from "../data/program-price.json"
 import discountData from "../data/checkout-discount.json"
 
-async function getToken(total) {
+async function getToken(total, paket) {
 	const PAYMENT_GATEWAY_API_SERVER = "https://bijak-cuan-api.vercel.app/api"
 	const data = {
-		order_id: GenerateOrderId(),
+		order_id: GenerateOrderId(paket),
+		paket: paket,
 		total: total,
 	}
 
@@ -137,7 +138,8 @@ export default function Checkout() {
 								</div>
 							</div>
 							<div className="card-footer">
-								<div onClick={() => handleCheckout(totalPrice - discount)}>
+								<div
+									onClick={() => handleCheckout(totalPrice - discount, paket)}>
 									<div className="btn btn-primary w-100">
 										Bayar & Gabung Kelas Sekarang
 									</div>
