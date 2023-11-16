@@ -19,18 +19,9 @@ export default function Bantuan(){
 				href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
 				rel="stylesheet"></link>
 			<section id="deskripsi">
+            <img src="/assets/pusat-bantuan/bantuan.png" alt="Pusat Bantuan" style={{ width: '100%' }} />
+            
 				<div className="container py-5">
-					<h2 className="text-center mb-4">
-						Temukan Jawaban untuk Pertanyaan Anda di Sini.
-					</h2>
-					<div className="text-center">
-						<img
-							src="/assets/pusat-bantuan/pb.jpg"
-							alt="Pusat Bantuan"
-							style={{ borderRadius: "1rem", height: "200px", width: "900px" }}
-							className="mb-4"
-						/>
-					</div>
 					<div className="col">
 						<p
 							style={{
