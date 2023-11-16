@@ -11,6 +11,8 @@ import Event from "./pages/Event"
 import DetailEvent from "./pages/DetailEvent"
 import Promo from "./pages/Promo"
 import NotFound from "./pages/NotFound"
+import Bantuan from "./pages/Bantuan"
+import Kontak from "./pages/Kontak"
 import Artikel from "./pages/Artikel"
 import DetailArtikel from "./pages/DetailArtikel"
 
@@ -33,6 +35,8 @@ export default function App() {
 				<Route path="/artikel" element={<Artikel />} />
 				<Route path="/detail/:id" element={<DetailArtikel />} />
 				<Route path="*" element={<NotFound />} />
+				<Route path="/bantuan" element={<Bantuan />} />
+				<Route path="/kontak" element={<Kontak />} />
 			</Routes>
 			<Footer />
 		</BrowserRouter>
