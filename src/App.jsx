@@ -12,7 +12,8 @@ import DetailEvent from "./pages/DetailEvent"
 import Promo from "./pages/Promo"
 import NotFound from "./pages/NotFound"
 import Bantuan from "./pages/Bantuan"
-import Kontak from "./pages/kontak"
+import Kontak from "./pages/Kontak"
+
 
 export default function App() {
 	return (
