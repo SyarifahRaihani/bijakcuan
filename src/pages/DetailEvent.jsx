@@ -40,6 +40,13 @@ export default function DetailEvent() {
                 <br />
               </p>
             ))}
+            <h6 className="mb-3">Apa yang akan kamu dapatkan? </h6>
+            {event.benefits.map((benefit) => (
+              <p key={benefit}>
+                {benefit}
+                <br />
+              </p>
+            ))}
           </div>
           <div className="col-lg-4">
             <div className="card p-4">
