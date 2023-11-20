@@ -4,8 +4,8 @@ import { useState } from "react"
 import { Link } from "react-router-dom"
 import faqData from "../data/bantuan-data"
 
-export default function Bantuan(){
-    const [selectedQuestion, setSelectedQuestion] = useState(null)
+export default function Bantuan() {
+	const [selectedQuestion, setSelectedQuestion] = useState(null)
 
 	const toggleQuestion = (index) => {
 		if (selectedQuestion === index) {
@@ -14,23 +14,23 @@ export default function Bantuan(){
 			setSelectedQuestion(index)
 		}
 	}
-    return(
-        <main>
+	return (
+		<main>
 			<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet"></link>
 			<section id="deskripsi">
-        
-			<div style={{ position: "relative" }}>
-      			<img src="/assets/pusat-bantuan/bantuan.png" alt="Pusat Bantuan" style={{ width: "100%" }}	/>
-				<div
-					style={{
-					position: "absolute",
-					top: "50%",
-					left: "50%",
-					transform: "translate(-50%, -50%)",
-					textAlign: "center",
-					}} >
-					<h1 style={{ color: "white" }}>Butuh Bantuan</h1>
-				</div>
+
+				<div style={{ position: "relative" }}>
+					<img src="/assets/pusat-bantuan/bantuan.png" alt="Pusat Bantuan" style={{ width: "100%" }} />
+					<div
+						style={{
+							position: "absolute",
+							top: "50%",
+							left: "50%",
+							transform: "translate(-50%, -50%)",
+							textAlign: "center",
+						}} >
+						<h1 style={{ color: "white" }}>Butuh Bantuan</h1>
+					</div>
 				</div>
 
 				<div className="container py-5">
@@ -102,43 +102,70 @@ export default function Bantuan(){
 			</section>
 
 			<section id="faq">
-				<div className="container">
-					<h3 className="text-center">Pertanyaan yang Sering Ditanyakan</h3>
-					{faqData.map((faq, index) => (
-						<div
-							key={index}
-							className="mb-3"
-							style={{
-								marginLeft: "auto",
-								marginRight: "auto",
-								maxWidth: "900px",
-							}}>
-							<hr />
-							<div
-								onClick={() => toggleQuestion(index)}
-								style={{
-									borderBottom: "1px solid #ccc",
-									paddingBottom: "8px",
-									cursor: "pointer",
-									color: "grey",
-								}}>
-								<strong>{faq.question}</strong>
+				<div className="container col-7">
+					<h3 className="text-center pb-3 ">Pertanyaan Yang Sering Di tayakan</h3>
+					<div class="accordion accordion-flush" id="accordionFlushExample">
+						<div class="accordion-item">
+							<h2 class="accordion-header">
+								<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+									Apa Langkah Selanjutnya Setelah Mendaftar Di Bijak Cuan?
+								</button>
+							</h2>
+							<div id="flush-collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+								<div class="accordion-body">Anda dapat memilih beragam paket Membership yang menarik yaitu trial, langganan bulanan, dan Lifetime.</div>
 							</div>
-							<ul>
-								{selectedQuestion === index && (
-									<li className="list-unstyled py-2">
-										<div style={{ paddingTop: "8px" }}>{faq.answer}</div>
-									</li>
-								)}
-							</ul>
 						</div>
-					))}
+
+						<div class="accordion-item">
+							<h2 class="accordion-header">
+								<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+									Adakah Grup Telegram Ataupun Whatsapp Di Bijak Cuan?
+								</button>
+							</h2>
+							<div id="flush-collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+								<div class="accordion-body">Tidak, saat ini kami belum memiliki Grup Telegram atau WhatsApp resmi di Bijak Cuan. Namun, jika Anda mengalami kendala atau memerlukan bantuan, Anda dapat menghubungi kami melalui kontak yang tersedia di bawah.</div>
+							</div>
+						</div>
+
+						<div class="accordion-item">
+							<h2 class="accordion-header">
+								<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+									Bagaimana Cara Memperpanjang Masa Langganan Membership?
+								</button>
+							</h2>
+							<div id="flush-collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+								<div class="accordion-body">Anda dapat memilih paket Lifetime lalu melanjutkan proses pembayaran. Setelah pembayaran selesai, paket program Lifetime Anda akan segera aktif.</div>
+							</div>
+						</div>
+
+						<div class="accordion-item">
+							<h2 class="accordion-header">
+								<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFour" aria-expanded="false" aria-controls="flush-collapseFour">
+									Adakah Free Class Di Bijak Cuan?
+								</button>
+							</h2>
+							<div id="flush-collapseFour" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+								<div class="accordion-body">Tentu, kami menawarkan paket uji coba (trial) yang memungkinkan Anda untuk mengakses kelas-kelas gratis di platform kami.</div>
+							</div>
+						</div>
+
+						<div class="accordion-item">
+							<h2 class="accordion-header">
+								<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFive" aria-expanded="false" aria-controls="flush-collapseFive">
+									Apa Ada Diskon Untuk Jadi Membership?
+								</button>
+							</h2>
+							<div id="flush-collapseFive" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+								<div class="accordion-body">Anda dapat memilih paket Lifetime lalu melanjutkan proses pembayaran. Setelah pembayaran selesai, paket program Lifetime Anda akan segera aktif.</div>
+							</div>
+						</div>
+
+
+					</div>
 				</div>
 			</section>
 
-			<section id="kontak">
-				
-
+			<section >
 				<div className="hero2 mt-5">
 					<div className="container text-center">
 						<div className="row justify-content-center flex-column-reverse flex-lg-row">
@@ -155,5 +182,5 @@ export default function Bantuan(){
 				</div>
 			</section>
 		</main>
-    )
+	)
 }
