@@ -1,4 +1,5 @@
 "use client"
+import "./css/bantuan.css";
 import { useState } from "react"
 import { Link } from "react-router-dom"
 import faqData from "../data/bantuan-data"
@@ -15,11 +16,22 @@ export default function Bantuan(){
 	}
     return(
         <main>
-			<link
-				href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
-				rel="stylesheet"></link>
+			<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet"></link>
 			<section id="deskripsi">
-            <img src="/assets/pusat-bantuan/bantuan.png" alt="Pusat Bantuan" style={{ width: '100%' }} />
+        
+			<div style={{ position: "relative" }}>
+      			<img src="/assets/pusat-bantuan/bantuan.png" alt="Pusat Bantuan" style={{ width: "100%" }}	/>
+				<div
+					style={{
+					position: "absolute",
+					top: "50%",
+					left: "50%",
+					transform: "translate(-50%, -50%)",
+					textAlign: "center",
+					}} >
+					<h1 style={{ color: "white" }}>Butuh Bantuan</h1>
+				</div>
+				</div>
 
 				<div className="container py-5">
 					<div className="col">
@@ -125,42 +137,19 @@ export default function Bantuan(){
 			</section>
 
 			<section id="kontak">
-				<div className="container py-5">
-					<h3 className="text-center mb-4">Hubungi Kami!</h3>
-					<div className="d-flex gap-4 align-items-center justify-content-center">
-						<div>
-							<img
-								src="/assets/pusat-bantuan/cta.jpg"
-								alt="Hubungi Kami"
-								style={{
-									borderRadius: "1rem",
-									height: "200px",
-									width: "400px",
-								}}
-								className="mb-4"
-							/>
-						</div>
-						<div>
-							<a href="">
-								<p
-									className="px-4 py-2 mb-4 rounded-5"
-									style={{ backgroundColor: "var(--white-secondary)" }}>
-									<i
-										class="fab fa-whatsapp fa-lg pe-2"
-										style={{ color: "#1e9c1c" }}></i>
-									+62 123-1234-1234
-								</p>
-							</a>
-							<a href="">
-								<p
-									className="px-4 py-2 mb-4 rounded-5"
-									style={{ backgroundColor: "var(--white-secondary)" }}>
-									<i
-										class="far fa-envelope fa-lg pe-2"
-										style={{ color: "#ff0033" }}></i>
-									bijakcuan@gmail.com
-								</p>
-							</a>
+				
+
+				<div className="hero2 mt-5">
+					<div className="container text-center">
+						<div className="row justify-content-center flex-column-reverse flex-lg-row">
+							<div className="col-lg-8">
+								<h1 className="text-white px-5 mb-5">
+									Buka Kesuksesan Finansial Anda Sekarang Bersama Bijakcuan
+								</h1>
+								<Link to={"/program"} className="btn btn-primary mb-10">
+									Gabung Sekarang
+								</Link>
+							</div>
 						</div>
 					</div>
 				</div>

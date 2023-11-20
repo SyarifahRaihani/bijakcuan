@@ -25,7 +25,7 @@ export default function Kontak(){
                 </div>
 
                 <div className="col-md-6">
-                  <input className="form-control form-control-lg mb-3" type="text" placeholder="Email" />
+                  <input className="form-control form-control-lg mb-3" type="email" placeholder="Email" />
                   <input className="form-control form-control-lg mb-3" type="text" placeholder="Status" />
                 </div>
                 
