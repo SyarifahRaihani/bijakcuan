@@ -1,16 +1,18 @@
 import { useState, useEffect } from "react"
 import { Link } from "react-router-dom"
+import { Cookies } from "react-cookie"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faCircleCheck } from "@fortawesome/free-solid-svg-icons"
 import price from "../../data/program-price"
-import FormatCurrency from "../../components/format-currency"
+import FormatCurrency from "../format-currency"
 
 export default function CardProgram() {
 	const [paket, setPaket] = useState("Bulanan")
 	const [isLoggedIn, setIsLoggedIn] = useState(false)
+	const cookies = new Cookies()
 
 	useEffect(() => {
-		const isLoggedInUser = localStorage.getItem("isLoggedIn")
+		const isLoggedInUser = cookies.get("auth-login")
 		if (isLoggedInUser) {
 			setIsLoggedIn(true)
 		}

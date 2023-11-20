@@ -57,10 +57,10 @@ export default function Program() {
 				<div className="container">
 					<div className="row gap-5">
 						<div className="col">
-							<NavProgram></NavProgram>
+							<NavProgram />
 						</div>
 						<div className="col-lg-5">
-							<CardProgram></CardProgram>
+							<CardProgram />
 						</div>
 					</div>
 				</div>
