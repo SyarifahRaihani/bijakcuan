@@ -6,6 +6,7 @@ import Beranda from "./pages/Beranda"
 import Masuk from "./pages/Masuk"
 import Daftar from "./pages/Daftar"
 import Program from "./pages/Program"
+import Promo from "./pages/Promo"
 import Checkout from "./pages/Checkout"
 
 export default function App() {
@@ -20,6 +21,7 @@ export default function App() {
 				<Route path="/masuk" element={<Masuk />} />
 				<Route path="/daftar" element={<Daftar />} />
 				<Route path="/program" element={<Program />} />
+				<Route path="/promo" element={<Promo />} />
 				<Route path="/checkout" element={<Checkout />} />
 				<Route path="*" element={<Navigate to="/" />} />
 			</Routes>
