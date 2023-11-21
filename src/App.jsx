@@ -15,6 +15,7 @@ import Bantuan from "./pages/Bantuan"
 import Kontak from "./pages/Kontak"
 import Artikel from "./pages/Artikel"
 import DetailArtikel from "./pages/DetailArtikel"
+import PembayaranSukses from "./pages/PembayaranSukses"
 
 export default function App() {
 	return (
@@ -37,6 +38,7 @@ export default function App() {
 				<Route path="*" element={<NotFound />} />
 				<Route path="/bantuan" element={<Bantuan />} />
 				<Route path="/kontak" element={<Kontak />} />
+				<Route path="/checkout/sukses" element={<PembayaranSukses />} />
 			</Routes>
 			<Footer />
 		</BrowserRouter>
