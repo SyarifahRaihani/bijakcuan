@@ -1,5 +1,5 @@
-export default function GenerateOrderId() {
+export default function GenerateOrderId(paket) {
 	const timestamp = new Date().getTime()
 	const random = Math.floor(Math.random() * 90 + 10)
-	return `ORDER${timestamp}${random}`
+	return `BC-${paket}-${timestamp}${random}`
 }
