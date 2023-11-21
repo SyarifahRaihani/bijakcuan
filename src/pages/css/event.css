@@ -2,16 +2,25 @@
   height: 100%;
 }
 #event .hero {
+  padding: 84px 0;
+  background-color: #131230;
+}
+#detailevent .hero {
+  padding: 84px 0;
   background-color: #131230;
 }
 .deskripsi {
-  font-size: small;
+  font-size: 50;
 }
 #event .hero2 {
+  height: 100%;
+  padding: 84px 24px;
   background-color: black;
-  height: 300px;
-  display: flex;
-  align-items: center;
+}
+#detailevent .hero2 {
+  height: 100%;
+  padding: 84px 24px;
+  background-color: black;
 }
 #detailevent .hero {
   background-color: #131230;
