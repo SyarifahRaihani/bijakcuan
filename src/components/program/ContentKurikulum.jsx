@@ -1,36 +1,144 @@
+import { useState } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faChevronDown, faChevronUp, faSquareCheck } from '@fortawesome/free-solid-svg-icons';
+
 export default function KurikulumProgram() {
-	return (
-		<div id="program-content">
-			<h2>
-				Pentingnya Keuangan Pribadi: Cara Mengelola Utang dan Membangun Dana
-				Darurat
-			</h2>
-			<h4>Modul 1: Pengenalan Keuangan Bisnis</h4>
-			<p>
-				<b>Pertemuan 1:</b> Pengenalan Keuangan Bisnis
-			</p>
-			<ul>
-				<li>Pengertian keuangan bisnis</li>
-				<li>Mengapa keuangan bisnis penting</li>
-				<li>Menetapkan tujuan keuangan bisnis</li>
-			</ul>
-			<br />
-			<h4>Modul 2: Mengelola Utang</h4>
-			<p>
-				<b>Pertemuan 2:</b> Jenis Utang dan Dampaknya
-			</p>
-			<ul>
-				<li>Jenis-jenis utang</li>
-				<li>Bagaimana utang dapat memengaruhi keuangan Anda</li>
-			</ul>
-			<p>
-				<b>Pertemuan 3:</b> Strategi Mengelola Utang
-			</p>
-			<ul>
-				<li>Mengurangi utang</li>
-				<li>Menghindari jatuh ke dalam lebih banyak utang</li>
-				<li>Konsolidasi utang</li>
-			</ul>
-		</div>
-	)
+  const [activeModule, setActiveModule] = useState(null);
+
+  const modules = [
+    {
+      title: 'Pengantar',
+      meetings: [
+        'Selamat Datang Di Kelas!',
+        'Definisi Pengelolaan Keuangan',
+        'Pentingnya Pengelolaan Keuangan Bisnis',
+      ],
+    },
+    {
+      title: 'Pengelolaan Pendapatan & Biaya',
+      meetings: [
+        'Konsep Pendapatan & Biaya',
+        'Pendapatan vs Biaya',
+        'Accrual vs Cash Basis',
+        'Pendapatan vs Penerimaan',
+        'Biaya vs Pengeluaran',
+        'Rangkuman',
+      ],
+    },
+    {
+      title: 'Pemahaman Dana Darurat',
+      meetings: [
+        'Konsep dan Pentingnya Dana Darurat',
+        'Cara Menghitung Jumlah Dana Darurat',
+        'Strategi Pengelolaan Dana Darurat Bisnis',
+        'Rangkuman',
+      ],
+    },
+    {
+      title: 'Pengenalan Investasi untuk Bisnis',
+      meetings: [
+        'Jenis-jenis Investasi',
+        'Risiko dan Manfaat Investasi',
+        'Cara Memilih Investasi yang Tepat',
+        'Rangkuman',
+      ],
+    },
+    {
+      title: 'Mengelola Keuangan Bisnis',
+      meetings: [
+        'Pengantar Mengelola Keuangan Bisnis',
+        'Membuat Anggaran',
+        'Kas',
+        'Piutang',
+        'Persediaan',
+        'Utang',
+        'Monitor Aset',
+        'Evaluasi Pengeluaran',
+        'Perpajakan Bisnis',
+        'Rangkuman',
+      ],
+    },
+    {
+      title: 'Pembukuan & Laporan Keuangan',
+      meetings: [
+        'Simulasi Laporan Keuangan pada Bisnis',
+        'Laporan Keuangan UMKM di Bidang Jasa',
+        'Laporan Keuangan UMKM di Bidang Dagang',
+        'Laporan Keuangan UMKM di Bidang Manufaktur',
+        'Catatan Atas Laporan Keuangan',
+        'Rangkuman',
+      ],
+    },
+    {
+      title: 'Analisa Laporan Keuangan',
+      meetings: [
+        'Konsep Analisa Laporan Keuangan',
+        'Metode & Rasio Analisa Laporan Keuangan',
+        'Analisa dengan Metode Analisis Horizontal & Vertikal',
+        'Analisa Rasio Likuiditas',
+        'Analisa Rasio Aktivitas',
+        'Analisa Rasio Profitabilitas',
+        'Analisa Rasio Cakupan / Coverage Ratio',
+        'Rangkuman',
+      ],
+    },
+    {
+      title: 'Digitalisasi Pembayaran',
+      meetings: [
+        'Pengantar Penggunaan QRIS',
+        'Penerapan QRIS dalam Bisnis Retail dan Layanan',
+        'Analisis Data melalui QRIS',
+        'Rangkuman',
+      ],
+    },
+    {
+      title: 'Pemasaran dan Promosi',
+      meetings: [
+        'Pengantar Pemasaran dan Promosi Bisnis',
+        'Penyusunan Rencana Pemasaran',
+        'Analisis Data melalui QRIS',
+        'Rangkuman',
+      ],
+    },
+    {
+      title: 'Penutup',
+      meetings: [
+        'Refleksi dan Penutup',
+        'Rangkuman',
+      ],
+    },
+  ];
+
+  const handleModuleClick = (index) => {
+    setActiveModule(activeModule === index ? null : index);
+  };
+
+  return (
+    <div id="program-content">
+      {modules.map((module, index) => (
+        <div key={index} className="card mb-3">
+          <div
+            className="card-header d-flex justify-content-between align-items-center"
+            onClick={() => handleModuleClick(index)}
+            style={{ cursor: 'pointer' }}
+          >
+            <h5>{module.title}</h5>
+            <FontAwesomeIcon icon={activeModule === index ? faChevronUp : faChevronDown} />
+          </div>
+          {activeModule === index && (
+            <div className="card-body">
+              {module.meetings.map((meeting, meetingIndex) => (
+                <div key={meetingIndex} className="d-flex align-items-center">
+                  <FontAwesomeIcon icon={faSquareCheck} className="text-success me-2" />
+                  <p>
+                    <p>{meeting}</p>
+                  </p>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+      ))}
+    </div>
+  );
 }
