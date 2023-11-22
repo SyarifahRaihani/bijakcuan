@@ -196,7 +196,7 @@ export default function DetailArtikel() {
                   <div className="card">
                     <img src={article.gambar} className="card-img-top" alt={`Artikel ${article.id}`} />
                     <div className="card-body">
-                      <h5>{article.judul}</h5>
+                      <h6>{article.judul}</h6>
                     </div>
                     <div className="card-footer text-center">
                       <Link to={`/detail/${article.id}`} className="btn btn-primary ">

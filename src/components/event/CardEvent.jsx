@@ -5,9 +5,9 @@ export default function CardEvent(props) {
     <div className="card">
       <img src={props.image} className="card-img-top" alt="" />
       <div className="card-body d-flex flex-column">
-        <h5 className="card-title">
+        <h6 className="card-title">
           {props.title}
-        </h5>
+        </h6>
         <p className="card-text">
           {props.text}
         </p>

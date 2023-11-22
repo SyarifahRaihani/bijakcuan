@@ -1,12 +1,13 @@
 import { Link } from "react-router-dom"
 
+
 export default function KursusSaya() {
   return (
     <main id="kursusSaya">
       <div className="card container">
         <div className="card-body">
           <div className="row">
-            <div className="col-md-12 my-3">
+            <div className="col-md-12">
               <h5>Selamat Belajar</h5>
             </div>
             <div className="col-md-12">

@@ -41,7 +41,7 @@ export default function Artikel() {
                         <div className="card">
                             <img src={artikel.gambar} className="card-img-top" alt={`Artikel ${artikel.id}`} />
                             <div className="card-body">
-                                <h5 >{artikel.judul}</h5>
+                                <h6 >{artikel.judul}</h6>
                                 <p className="card-text">{artikel.deskripsi}</p>
                             </div>
                             <div className="card-footer">
