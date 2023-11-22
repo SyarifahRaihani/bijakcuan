@@ -1,7 +1,7 @@
 
 export default function Pengaturan() {
   return (
-    <main id="pengaturan">
+    <section id="pengaturan">
       <div className="card" style={{ borderRadius: '10px' }}>
         <div className="card-body">
           <img
@@ -78,6 +78,6 @@ export default function Pengaturan() {
           </div>
         </div>
       </div>
-    </main>
+    </section>
   );
 }

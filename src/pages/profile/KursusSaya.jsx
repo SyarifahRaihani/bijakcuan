@@ -3,11 +3,11 @@ import { Link } from "react-router-dom"
 
 export default function KursusSaya() {
   return (
-    <main id="kursusSaya">
+    <section id="kursusSaya">
       <div className="card container">
         <div className="card-body">
           <div className="row">
-            <div className="col-md-12">
+            <div className="col-md-12 pt-1">
               <h5>Selamat Belajar</h5>
             </div>
             <div className="col-md-12">
@@ -24,6 +24,6 @@ export default function KursusSaya() {
           </div>
         </div>
       </div>
-    </main>
+    </section>
   );
 }

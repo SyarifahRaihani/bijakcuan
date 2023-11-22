@@ -58,7 +58,7 @@ export default function Profil() {
                     Pengaturan
                   </Link>
                   <Link
-          
+                    className='mb-3'
                   >
                     Keluar
                   </Link>

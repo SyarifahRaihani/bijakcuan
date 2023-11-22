@@ -1,8 +1,8 @@
-
+import "../css/transaksi.css"
 export default function Transaksi() {
 	return (
-		<main id="transaksi">
-			<div id="transaksi" className="card container">
+		<section id="transaksi">
+			<div className="card container">
 				<div className="card-body">
 					<button type="button" className="btn btn-success rounded-5 disabled">
 						Berhasil
@@ -42,6 +42,6 @@ export default function Transaksi() {
 					</div>
 				</div>
 			</div>
-		</main>
+		</section>
 	)
 }
