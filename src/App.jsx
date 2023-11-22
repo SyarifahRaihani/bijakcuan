@@ -33,7 +33,7 @@ export default function App() {
 				<Route path="/program" element={<Program />} />
 				<Route path="/event" element={<Event />} />
 				<Route path="/checkout" element={<Checkout />} />
-				<Route path="/event/detail" element={<DetailEvent />} />
+				<Route path="/event/:id" element={<DetailEvent />} />
 				<Route path="/promo" element={<Promo />} />
 				<Route path="/artikel" element={<Artikel />} />
 				<Route path="/detail/:id" element={<DetailArtikel />} />
