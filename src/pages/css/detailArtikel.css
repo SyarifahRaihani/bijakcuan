@@ -19,8 +19,11 @@
 }
 
 .hero2 {
+    height: 100%;
+    padding: 84px 24px;
     background-color: black;
-    height: 300px;
-    display: flex;
-    align-items: center;
+}
+
+#detailArtikel .card-body {
+    height: 140px; 
 }

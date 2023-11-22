@@ -7,12 +7,9 @@ export default function CardEvent(props) {
       <div className="card-body d-flex flex-column">
         <h6 className="card-title">
           {props.title}
-          {/* Webinar &quot;Mengelola Keuangan Bisnis dengan Bijak&quot; */}
         </h6>
         <p className="card-text">
           {props.text}
-          {/* Membahas strategi dan praktik terbaik dalam pengelolaan keuangan
-          bisnis, dengan pemateri ahli keuangan... */}
         </p>
       </div>
       <div className="card-footer">

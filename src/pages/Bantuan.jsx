@@ -104,59 +104,59 @@ export default function Bantuan() {
 			<section id="faq">
 				<div className="container col-7">
 					<h3 className="text-center pb-3 ">Pertanyaan Yang Sering Di tayakan</h3>
-					<div class="accordion accordion-flush" id="accordionFlushExample">
-						<div class="accordion-item">
-							<h2 class="accordion-header">
-								<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+					<div className="accordion accordion-flush" id="accordionFlushExample">
+						<div className="accordion-item">
+							<h2 className="accordion-header">
+								<button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
 									Apa Langkah Selanjutnya Setelah Mendaftar Di Bijak Cuan?
 								</button>
 							</h2>
-							<div id="flush-collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
-								<div class="accordion-body">Anda dapat memilih beragam paket Membership yang menarik yaitu trial, langganan bulanan, dan Lifetime.</div>
+							<div id="flush-collapseOne" className="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+								<div className="accordion-body">Anda dapat memilih beragam paket Membership yang menarik yaitu trial, langganan bulanan, dan Lifetime.</div>
 							</div>
 						</div>
 
-						<div class="accordion-item">
-							<h2 class="accordion-header">
-								<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+						<div className="accordion-item">
+							<h2 className="accordion-header">
+								<button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
 									Adakah Grup Telegram Ataupun Whatsapp Di Bijak Cuan?
 								</button>
 							</h2>
-							<div id="flush-collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
-								<div class="accordion-body">Tidak, saat ini kami belum memiliki Grup Telegram atau WhatsApp resmi di Bijak Cuan. Namun, jika Anda mengalami kendala atau memerlukan bantuan, Anda dapat menghubungi kami melalui kontak yang tersedia di bawah.</div>
+							<div id="flush-collapseTwo" className="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+								<div className="accordion-body">Tidak, saat ini kami belum memiliki Grup Telegram atau WhatsApp resmi di Bijak Cuan. Namun, jika Anda mengalami kendala atau memerlukan bantuan, Anda dapat menghubungi kami melalui kontak yang tersedia di bawah.</div>
 							</div>
 						</div>
 
-						<div class="accordion-item">
-							<h2 class="accordion-header">
-								<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+						<div className="accordion-item">
+							<h2 className="accordion-header">
+								<button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
 									Bagaimana Cara Memperpanjang Masa Langganan Membership?
 								</button>
 							</h2>
-							<div id="flush-collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
-								<div class="accordion-body">Anda dapat memilih paket Lifetime lalu melanjutkan proses pembayaran. Setelah pembayaran selesai, paket program Lifetime Anda akan segera aktif.</div>
+							<div id="flush-collapseThree" className="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+								<div className="accordion-body">Anda dapat memilih paket Lifetime lalu melanjutkan proses pembayaran. Setelah pembayaran selesai, paket program Lifetime Anda akan segera aktif.</div>
 							</div>
 						</div>
 
-						<div class="accordion-item">
-							<h2 class="accordion-header">
-								<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFour" aria-expanded="false" aria-controls="flush-collapseFour">
-									Adakah Free Class Di Bijak Cuan?
+						<div className="accordion-item">
+							<h2 className="accordion-header">
+								<button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFour" aria-expanded="false" aria-controls="flush-collapseFour">
+									Adakah Free ClassName Di Bijak Cuan?
 								</button>
 							</h2>
-							<div id="flush-collapseFour" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
-								<div class="accordion-body">Tentu, kami menawarkan paket uji coba (trial) yang memungkinkan Anda untuk mengakses kelas-kelas gratis di platform kami.</div>
+							<div id="flush-collapseFour" className="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+								<div className="accordion-body">Tentu, kami menawarkan paket uji coba (trial) yang memungkinkan Anda untuk mengakses kelas-kelas gratis di platform kami.</div>
 							</div>
 						</div>
 
-						<div class="accordion-item">
-							<h2 class="accordion-header">
-								<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFive" aria-expanded="false" aria-controls="flush-collapseFive">
+						<div className="accordion-item">
+							<h2 className="accordion-header">
+								<button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFive" aria-expanded="false" aria-controls="flush-collapseFive">
 									Apa Ada Diskon Untuk Jadi Membership?
 								</button>
 							</h2>
-							<div id="flush-collapseFive" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
-								<div class="accordion-body">Anda dapat memilih paket Lifetime lalu melanjutkan proses pembayaran. Setelah pembayaran selesai, paket program Lifetime Anda akan segera aktif.</div>
+							<div id="flush-collapseFive" className="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+								<div className="accordion-body">Anda dapat memilih paket Lifetime lalu melanjutkan proses pembayaran. Setelah pembayaran selesai, paket program Lifetime Anda akan segera aktif.</div>
 							</div>
 						</div>
 
