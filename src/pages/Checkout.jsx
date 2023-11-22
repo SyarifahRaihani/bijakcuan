@@ -1,5 +1,5 @@
 import "./css/checkout.css"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { useSearchParams } from "react-router-dom"
 import { Navigate } from "react-router-dom"
 import axios from "axios"
@@ -7,7 +7,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faCircleCheck } from "@fortawesome/free-solid-svg-icons"
 import FormatCurrency from "../components/format-currency"
 import GenerateOrderId from "../components/checkout/generate-order-id"
-import priceData from "../data/program-price.json"
+import programData from "../data/program-price.json"
 import discountData from "../data/checkout-discount.json"
 
 async function getToken(total, paket) {
@@ -32,31 +32,37 @@ async function getToken(total, paket) {
 
 export default function Checkout() {
 	const [searchParams] = useSearchParams()
+	const [selectedProgram, setSelectedProgram] = useState(programData[1])
 	const paket = searchParams.get("paket")
 
-	if (paket !== "Trial" && paket !== "Bulanan" && paket !== "Lifetime") {
-		return <Navigate to="/program" />
-	}
+	useEffect(() => {
+		if (paket !== "Trial" && paket !== "Bulanan" && paket !== "Lifetime") {
+			return <Navigate to="/program" />
+		}
+		const program = programData.find((program) => program.name === paket)
+		setSelectedProgram(program)
+	}, [])
 
-	let random = 23
-	const [discount, setDiscount] = useState(0)
-	const [totalPrice] = useState(priceData[paket] - random)
+	let random = Math.floor(Math.random() * 100) + 1
 
 	if (paket === "Trial") {
 		random = 0
 	}
 
+	const [discount, setDiscount] = useState(0)
+	const [totalPrice] = useState(selectedProgram.price - random)
+
 	const handleDiscount = (code) => {
 		const foundDiscount = discountData.find((item) => item.code === code)
 		if (foundDiscount) {
-			setDiscount(foundDiscount.discount * priceData[paket])
+			setDiscount(foundDiscount.discount * selectedProgram.price)
 		} else {
 			setDiscount(0)
 		}
 	}
 
-	const handleCheckout = async (total) => {
-		let token = await getToken(total)
+	const handleCheckout = async (total, paket) => {
+		let token = await getToken(total, paket)
 		window.location.href = `https://app.sandbox.midtrans.com/snap/v3/redirection/${token}`
 	}
 
@@ -118,7 +124,7 @@ export default function Checkout() {
 									<div className="d-flex flex-column gap-4">
 										<div className="d-flex justify-content-between">
 											<p>Harga Kursus</p>
-											<p>{FormatCurrency(priceData[paket])}</p>
+											<p>{FormatCurrency(selectedProgram.price)}</p>
 										</div>
 										<div className="d-flex justify-content-between">
 											<p>Kode Unik</p>
