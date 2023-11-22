@@ -1,10 +1,11 @@
 import { useParams, Link } from 'react-router-dom';
+import { Helmet } from "react-helmet";
 import artikelData from "../data/artikelData.json"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons"
 import "./css/detailArtikel.css";
 
-const articlesToShow = [1, 2, 3, 4];
+const articlesToShow = [1, 2, 3, 4, 5];
 
 export default function DetailArtikel() {
   const { id } = useParams();
@@ -14,6 +15,9 @@ export default function DetailArtikel() {
 
   return (
     <main id='detailArtikel'>
+      <Helmet>
+        <title>Artikel | Bijakcuan.</title>
+        </Helmet>
       <section className="hero-section">
         <div className="container">
         <Link
@@ -136,20 +140,63 @@ export default function DetailArtikel() {
           </ol>
         </div>
         )}
+        
+        {id === "5" && (
+          <div className='id-artikel'>
+          <h4 className='pb-3'>Kiat Meningkatkan Pendapatan Bisnis Tanpa Menambah Utang</h4>
+          <p className='pb-3'>Pendapatan adalah salah satu aspek kunci dalam kesuksesan bisnis. Meskipun seringkali pemilik bisnis menghadapi kebutuhan untuk mendapatkan pendanaan tambahan, ada sejumlah strategi yang dapat diterapkan untuk meningkatkan pendapatan tanpa harus bergantung pada utang tambahan.  Berikut adalah beberapa kiat yang dapat membantu Anda meningkatkan pendapatan bisnis tanpa harus bergantung pada utang tambahan:</p>
+          <ol>
+              <h5><li>Diversifikasi Produk atau Layanan</li></h5>
+              <p>Pertimbangkan untuk menambahkan produk atau layanan baru yang dapat menjangkau pangsa pasar yang lebih luas. Diversifikasi dapat membantu meningkatkan sumber pendapatan tanpa meningkatkan utang.</p>
+              <br />
+              <h5><li>Optimalkan Proses Bisnis</li></h5>
+              <p>Tinjau dan optimalkan proses bisnis Anda untuk meningkatkan efisiensi. Hal ini dapat mengurangi biaya produksi dan meningkatkan keuntungan bersih.</p>
+              <br />
+              <h5><li>Peningkatan Harga dengan Strategis</li></h5>
+              <p>Evaluasi harga produk atau layanan Anda. Jika perlu, pertimbangkan untuk menaikkan harga secara strategis, terutama jika Anda dapat menawarkan nilai tambah atau kualitas yang lebih baik.</p>
+              <br />
+              <h5><li>Fokus pada Pemasaran Digital</li></h5>
+              <p>Manfaatkan pemasaran digital untuk mencapai lebih banyak pelanggan potensial. Kampanye pemasaran online yang efektif dapat membantu meningkatkan visibilitas bisnis Anda.</p>
+              <br />
+              <h5><li>Pelanggan Setia dan Program Poin</li></h5>
+              <p>Berikan insentif kepada pelanggan setia dan pertimbangkan program poin atau diskon untuk memotivasi pelanggan agar tetap berbelanja di bisnis Anda.</p>
+              <br />
+              <h5><li>Ekspansi Geografis atau Online</li></h5>
+              <p>Pertimbangkan untuk memperluas bisnis Anda ke daerah atau pasar online yang belum tergarap. Ini dapat membuka peluang baru untuk meningkatkan pendapatan.</p>
+              <br />
+              <h5><li>Kolaborasi atau Kemitraan</li></h5>
+              <p>Jika memungkinkan, pertimbangkan untuk berkolaborasi dengan bisnis lain atau membentuk kemitraan. Ini dapat membuka pintu untuk peluang baru dan meningkatkan pendapatan bersama.</p>
+              <br />
+              <h5><li>Analisis Data Pelanggan</li></h5>
+              <p>Gunakan analisis data pelanggan untuk memahami preferensi dan kebutuhan pelanggan. Ini dapat membantu Anda menyusun strategi yang lebih tepat untuk meningkatkan penjualan.</p>
+              <br />
+              <h5><li>Inovasi Produk atau Layanan</li></h5>
+              <p>Terus inovasi produk atau layanan Anda agar tetap relevan di pasar. Produk atau layanan yang inovatif dapat menarik minat pelanggan baru dan meningkatkan penjualan.</p>
+              <br />
+              <h5><li>Penawaran Khusus atau Diskon Terbatas</li></h5>
+              <p>Pertimbangkan untuk menawarkan penawaran khusus atau diskon terbatas waktu untuk merangsang pembelian.</p>
+              <br />
+              <h5><li>Pelatihan dan Pengembangan Karyawan</li></h5>
+              <p>Karyawan yang terlatih dengan baik dapat meningkatkan produktivitas dan layanan pelanggan, yang pada gilirannya dapat meningkatkan pendapatan.</p>
+              <br />
+              <p className='pb-4'>Ingatlah bahwa setiap bisnis unik, jadi penting untuk menyesuaikan strategi ini dengan kebutuhan dan karakteristik bisnis Anda. Seiring waktu, evaluasi dan perbarui strategi Anda untuk memastikan keberlanjutan pertumbuhan pendapatan.</p>
+          </ol>
+        </div>
+        )}
       </section>
       
       <section className="article-cards-section">
-        <div className="container">
+        <div className="container pt-5 pb-5">
             <h2 className='pb-1'>Artikel Lainnya</h2>
           <div className="row">
             {filteredArticlesToShow.map((articleId) => {
               const article = artikelData.find((artikel) => artikel.id === articleId);
               return (
-                <div key={article.id} className="col-md-4 mb-4">
-                  <div className="card ">
+                <div key={article.id} className="col-lg-3 col-md-6 mb-4">
+                  <div className="card">
                     <img src={article.gambar} className="card-img-top" alt={`Artikel ${article.id}`} />
                     <div className="card-body">
-                      <h6>{article.judul}</h6>
+                      <h5>{article.judul}</h5>
                     </div>
                     <div className="card-footer text-center">
                       <Link to={`/detail/${article.id}`} className="btn btn-primary ">
@@ -165,13 +212,17 @@ export default function DetailArtikel() {
       </section>
 
       <div className="hero2">
-        <div className="container text-center ">
-          <h3 className="text-white px-5 pb-3">
-            Buka Kesuksesan Finansial Anda Sekarang Bersama Bijakcuan
-          </h3>
-          <Link to={"/program"} className="btn btn-primary">
-            Gabung Sekarang
-          </Link>
+        <div className="container text-center">
+          <div className="row justify-content-center flex-column-reverse flex-lg-row">
+            <div className="col-lg-8">
+              <h1 className="text-white px-5 mb-5">
+                Buka Kesuksesan Finansial Anda Sekarang Bersama Bijakcuan
+              </h1>
+              <Link to={"/program"} className="btn btn-primary mb-10">
+                Gabung Sekarang
+              </Link>
+            </div>
+          </div>
         </div>
       </div>
 
