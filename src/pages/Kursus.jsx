@@ -1,5 +1,7 @@
 import "./css/kursus.css"
 import { Link } from "react-router-dom"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faArrowLeft } from "@fortawesome/free-solid-svg-icons"
 
 export default function Kursus() {
 	return (
@@ -7,9 +9,13 @@ export default function Kursus() {
 			<div className="container pt-4 pb-5">
 				<div className="row">
 					<div className="col-lg-4 kursus-nav d-flex flex-column gap-4">
-						<Link href={"/profil"} className="d-flex gap-3 align-items-center">
-							<img src="assets/kursus/Vector.jpg" alt="Gambar Responsif" />
-							<p>Kursus Saya</p>
+						<Link
+							to="/profil"
+							className="d-flex align-items-center justify-content-start gap-2 mb-4">
+							<FontAwesomeIcon
+								icon={faArrowLeft}
+								className="height-56"></FontAwesomeIcon>
+							Kursus Saya
 						</Link>
 						<div className="card py-3">
 							<h6>Pengenalan Keuangan Bisnis</h6>
