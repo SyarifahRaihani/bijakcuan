@@ -6,15 +6,18 @@ import {
 	faCircleCheck,
 } from "@fortawesome/free-solid-svg-icons"
 import { Link } from "react-router-dom"
+import FormatCurrency from "../components/format-currency"
+import programData from "../data/program-price.json"
+import Cta from "../components/cta"
 import "./css/beranda.css"
 
 export default function Beranda() {
 	return (
 		<main id="beranda">
-			<section id="hero" className="pb-0">
+			<section id="hero" className="pt-5 pb-0">
 				<div className="container">
-					<div className="row">
-						<div className="col">
+					<div className="row align-items-center">
+						<div className="col-lg-9">
 							<h1 className="mb-4">
 								Kembangkan Bisnis Anda dengan Pengelolaan Keuangan yang Efektif
 							</h1>
@@ -27,23 +30,23 @@ export default function Beranda() {
 								Gabung Sekarang
 							</Link>
 						</div>
-						<div className="col-3">
+						<div className="col-lg-3 d-flex justify-content-end">
 							<img src="/assets/beranda/bijakcuan.png" alt="" />
 						</div>
 					</div>
 				</div>
 			</section>
 
-			<section id="trailer" className="border-top">
+			<section id="trailer">
 				<div className="container">
 					<div className="row align-items-center">
-						<div className="col">
+						<div className="col-lg-7">
 							<img src="/assets/beranda/trailer.png" alt="img" />
 						</div>
-						<div className="col">
-							<h2 className="mb-4">
+						<div className="col-lg-5">
+							<h3 className="mb-4">
 								Langkah Awal Menuju Stabilitas Keuangan Bisnis
-							</h2>
+							</h3>
 							<p className="mb-5">
 								Sudahkah Anda Siap Rugi dan Bangkrut? Tanpa Pengelolaan Keuangan
 								yang Baik, Bisnis Terancam Kerugian, Kehilangan Keuntungan, dan
@@ -59,7 +62,7 @@ export default function Beranda() {
 
 			<section id="benefit">
 				<div className="container">
-					<h2 className="text-center mb-5">BELAJAR DI BIJAK CUAN</h2>
+					<h2 className="text-center mb-5">Melangkah Bersama Bijakcuan</h2>
 					<div className="row d-none d-lg-flex gap-5 justify-content-between mb-5">
 						<div className="col-lg-3 d-flex align-items-center gap-3">
 							<FontAwesomeIcon icon={faListCheck} />
@@ -81,66 +84,47 @@ export default function Beranda() {
 						</div>
 					</div>
 					<div className="row gap-5 gap-lg-0 text-center align-items-center">
-						<div className="col-lg-4">
-							<div className="card">
-								<div className="card-header">
-									<h2>Trial</h2>
-									<div className="btn btn-outline-dark">Coba Gratis</div>
-								</div>
-								<div className="card-body"></div>
-								<div className="card-footer">
-									<div className="discount">
-										<p>Rp 49.000</p>
+						{programData.map((program) => (
+							<div className="col-lg-4" key={program.id}>
+								<div
+									className={`card ${
+										program.name === "Bulanan" ? "primary" : ""
+									}`}>
+									<div className="card-header">
+										<h3>{program.name}</h3>
+										<div className="btn btn-outline-dark">
+											{program.tagline}
+										</div>
 									</div>
-									<h2 className="price">Gratis</h2>
-									<Link to={"/program"} className="w-100 btn btn-primary">
-										Dapatkan Sekarang
-									</Link>
+									<div className="card-body"></div>
+									<div className="card-footer">
+										<div className="discount">
+											{program.name === "Trial" ? (
+												<p>Gratis</p>
+											) : (
+												<p>{FormatCurrency(program["initial-price"])}</p>
+											)}
+										</div>
+										<h2 className="price">
+											{program.name === "Trial" ? (
+												<p>Gratis</p>
+											) : (
+												<p>{FormatCurrency(program.price)}</p>
+											)}
+										</h2>
+										<Link to={"/program"} className="w-100 btn btn-primary">
+											Dapatkan Sekarang
+										</Link>
+									</div>
 								</div>
 							</div>
-						</div>
-						<div className="col-lg-4">
-							<div className="card primary">
-								<div className="card-header">
-									<h2>Bulanan</h2>
-									<div className="btn btn-outline-dark">Harga Terbaik</div>
-								</div>
-								<div className="card-body"></div>
-								<div className="card-footer">
-									<div className="discount">
-										<p>Rp 199.000</p>
-									</div>
-									<h2 className="price">Rp 99.000</h2>
-									<Link to={"/program"} className="w-100 btn btn-primary">
-										Dapatkan Sekarang
-									</Link>
-								</div>
-							</div>
-						</div>
-						<div className="col-lg-4">
-							<div className="card">
-								<div className="card-header">
-									<h2>Lifetime</h2>
-									<div className="btn btn-outline-dark">Akses Selamanya</div>
-								</div>
-								<div className="card-body"></div>
-								<div className="card-footer">
-									<div className="discount">
-										<p>Rp 599.000</p>
-									</div>
-									<h2 className="price">Rp 249.000</h2>
-									<Link to={"/program"} className="w-100 btn btn-primary">
-										Dapatkan Sekarang
-									</Link>
-								</div>
-							</div>
-						</div>
+						))}
 					</div>
 				</div>
 			</section>
 
 			<section id="beranda-info">
-				<div className="container text-center">
+				<div className="container text-center py-3">
 					<p>
 						Platform No 1 Untuk Meningkatkan <b>Stabilitas Finansial</b>{" "}
 						Pebisnis Indonesia
@@ -148,28 +132,8 @@ export default function Beranda() {
 				</div>
 			</section>
 
-			<div className="container">
-				{/* <section id="cta">
-					<div className="row gap-5 gap-lg-0 align-items-center">
-						<div className="col-lg-6">
-							<img
-								src="/assets/beranda/finance.jpeg"
-								className="d-block mx-lg-auto img-fluid"
-								alt="Finance"
-							/>
-						</div>
-						<div className="col-lg-6">
-							<h2 className="mb-4">
-								Optimalkan KEUANGAN Anda dengan STRATEGI HEBAT bersama Bijakcuan
-							</h2>
-							<Link to={"/program"} className="btn btn-primary">
-								Gabung Sekarang
-							</Link>
-						</div>
-					</div>
-				</section> */}
-
-				<section id="testimonial">
+			<section id="testimonial">
+				<div className="container">
 					<div className="row gap-5 gap-lg-0 align-items-center">
 						<div className="col-lg-5">
 							<img
@@ -189,8 +153,10 @@ export default function Beranda() {
 							<p>Pengusaha Warung Makan</p>
 						</div>
 					</div>
-				</section>
-			</div>
+				</div>
+			</section>
+
+			<Cta />
 		</main>
 	)
 }

@@ -3,23 +3,27 @@ import { Link } from "react-router-dom"
 import { Cookies } from "react-cookie"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faCircleCheck } from "@fortawesome/free-solid-svg-icons"
-import price from "../../data/program-price"
+import programData from "../../data/program-price"
 import FormatCurrency from "../format-currency"
 
 export default function CardProgram() {
 	const [paket, setPaket] = useState("Bulanan")
+	const [selectedProgram, setSelectedProgram] = useState(programData[1])
 	const [isLoggedIn, setIsLoggedIn] = useState(false)
 	const cookies = new Cookies()
 
 	useEffect(() => {
 		const isLoggedInUser = cookies.get("auth-login")
+		const program = programData.find((program) => program.name === paket)
+		console.log(program)
 		if (isLoggedInUser) {
 			setIsLoggedIn(true)
 		}
 	}, [])
 
-	const handlePaketChange = (paket) => {
+	const handlePaketChange = (paket, id) => {
 		setPaket(paket)
+		setSelectedProgram(programData[id])
 	}
 
 	return (
@@ -29,33 +33,21 @@ export default function CardProgram() {
 				<div id="content-paket">
 					<h6>Pilihan Paket</h6>
 					<div className="row">
-						<div className="col">
-							<div
-								className={`btn ${
-									paket === "Trial" ? "btn-primary" : "btn-outline-primary"
-								}`}
-								onClick={() => handlePaketChange("Trial")}>
-								Trial
+						{programData.map((program) => (
+							<div className="col" key={program.id}>
+								<div
+									className={`btn ${
+										paket === program.name
+											? "btn-primary"
+											: "btn-outline-primary"
+									}`}
+									onClick={() =>
+										handlePaketChange(program.name, program.id - 1)
+									}>
+									{program.name}
+								</div>
 							</div>
-						</div>
-						<div className="col">
-							<div
-								className={`btn ${
-									paket === "Bulanan" ? "btn-primary" : "btn-outline-primary"
-								}`}
-								onClick={() => handlePaketChange("Bulanan")}>
-								Bulanan
-							</div>
-						</div>
-						<div className="col">
-							<div
-								className={`btn ${
-									paket === "Lifetime" ? "btn-primary" : "btn-outline-primary"
-								}`}
-								onClick={() => handlePaketChange("Lifetime")}>
-								Lifetime
-							</div>
-						</div>
+						))}
 					</div>
 				</div>
 				<div id="content-benefit">
@@ -77,7 +69,7 @@ export default function CardProgram() {
 				</div>
 				<div id="content-price">
 					<h6>Biaya</h6>
-					<h2>{FormatCurrency(price[paket])}</h2>
+					<h2>{FormatCurrency(selectedProgram.price)}</h2>
 				</div>
 				<div id="content-checkout">
 					<Link
