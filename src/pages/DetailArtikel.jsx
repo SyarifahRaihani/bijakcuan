@@ -20,7 +20,7 @@ export default function DetailArtikel() {
         </Helmet>
       <section className="hero-section">
         <div className="container">
-        <Link
+    <Link
 			to="/artikel"
 			className="d-flex align-items-center justify-content-start gap-2 mb-4">
 			<FontAwesomeIcon
