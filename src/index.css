@@ -69,6 +69,10 @@ footer .container.footer-content svg {
 footer .container.footer-content {
 	padding: 48px 0;
 }
+#cta {
+	background-color: var(--black-primary);
+	color: var(--white-primary);
+}
 .border-top {
 	border-color: var(--black-secondary) !important;
 }
