@@ -3,6 +3,7 @@ import { Helmet } from "react-helmet"
 import Navbar from "./components/navbar"
 import Footer from "./components/footer"
 import Beranda from "./pages/Beranda"
+import Profil from "./pages/profile/Profil"
 import Masuk from "./pages/Masuk"
 import Daftar from "./pages/Daftar"
 import Program from "./pages/Program"
@@ -16,6 +17,7 @@ import Kontak from "./pages/Kontak"
 import Artikel from "./pages/Artikel"
 import DetailArtikel from "./pages/DetailArtikel"
 import PembayaranSukses from "./pages/PembayaranSukses"
+import Kursus from "./pages/Kursus"
 
 export default function App() {
 	return (
@@ -38,6 +40,8 @@ export default function App() {
 				<Route path="*" element={<NotFound />} />
 				<Route path="/bantuan" element={<Bantuan />} />
 				<Route path="/kontak" element={<Kontak />} />
+				<Route path="/profil" element={<Profil />} />
+				<Route path="/kursus" element={<Kursus />} />
 				<Route path="/checkout/sukses" element={<PembayaranSukses />} />
 			</Routes>
 			<Footer />
