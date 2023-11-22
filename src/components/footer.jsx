@@ -21,21 +21,21 @@ export default function Footer() {
 						<p>Pelatihan Keuangan untuk Sukses Finansial</p>
 					</div>
 					<div className="col-lg-2">
-						<h5 className="">Halaman</h5>
+						<h6 className="">Halaman</h6>
 						<div className="d-flex flex-column gap-2">
 							<Link to={"/program"}>Program</Link>
 							<Link to={"/promo"}>Promo</Link>
 						</div>
 					</div>
 					<div className="col-lg-2">
-						<h5>Komunitas</h5>
+						<h6>Komunitas</h6>
 						<div className="d-flex flex-column gap-2">
 							<Link to={"/event"}>Event</Link>
 							<Link to={"/artikel"}>Artikel</Link>
 						</div>
 					</div>
 					<div className="col-lg-2">
-						<h5>Hubungi kami</h5>
+						<h6>Hubungi kami</h6>
 						<div className="d-flex flex-column gap-2">
 							<Link to={"/bantuan"}>Pusat Bantuan</Link>
 							<Link to={"/kontak"}>Kontak</Link>
@@ -43,7 +43,7 @@ export default function Footer() {
 					</div>
 
 					<div className="col-lg-2">
-						<h5>Media Sosial</h5>
+						<h6>Media Sosial</h6>
 						<div className="d-flex flex-row gap-2">
 							<Link to={"#"}>
 								<FontAwesomeIcon icon={faTwitter}></FontAwesomeIcon>
