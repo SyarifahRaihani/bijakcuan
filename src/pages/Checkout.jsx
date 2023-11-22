@@ -99,11 +99,11 @@ export default function Checkout() {
 						<div className="card">
 							<div className="card-body d-flex flex-column gap-5">
 								<div>
-									<h6>Metode Pembayaran</h6>
+									<h5>Metode Pembayaran</h5>
 									<div className="btn btn-primary">Otomatis</div>
 								</div>
 								<div className="d-flex flex-column gap-2">
-									<h6>Kode Promo</h6>
+									<h5>Kode Promo</h5>
 									<input
 										onChange={(e) => handleDiscount(e.target.value)}
 										className="form-control"
@@ -114,7 +114,7 @@ export default function Checkout() {
 									/>
 								</div>
 								<div className="d-flex flex-column gap-2">
-									<h6>Detail Pembayaran</h6>
+									<h5>Detail Pembayaran</h5>
 									<div className="d-flex flex-column gap-4">
 										<div className="d-flex justify-content-between">
 											<p>Harga Kursus</p>

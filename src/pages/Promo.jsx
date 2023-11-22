@@ -1,10 +1,14 @@
 import { Link } from "react-router-dom"
 import "./css/promo.css"
 import promoData from "../data/promoData.json"
+import { Helmet } from "react-helmet";
 
 export default function Promo() {
   return (
     <main id="promo">
+      <Helmet>
+        <title>Promo | Bijakcuan.</title>
+      </Helmet>
     <div className="container pt-4 pb-5">
         <h2 className="mb-4">Promo</h2>
         <div className="text-center4">

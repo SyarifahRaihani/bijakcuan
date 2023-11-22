@@ -5,14 +5,11 @@ export default function CardEvent(props) {
     <div className="card">
       <img src={props.image} className="card-img-top" alt="" />
       <div className="card-body d-flex flex-column">
-        <h6 className="card-title">
+        <h5 className="card-title">
           {props.title}
-          {/* Webinar &quot;Mengelola Keuangan Bisnis dengan Bijak&quot; */}
-        </h6>
+        </h5>
         <p className="card-text">
           {props.text}
-          {/* Membahas strategi dan praktik terbaik dalam pengelolaan keuangan
-          bisnis, dengan pemateri ahli keuangan... */}
         </p>
       </div>
       <div className="card-footer">
