@@ -2,10 +2,14 @@ import "./css/kursus.css"
 import { Link } from "react-router-dom"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons"
+import Helmet from "react-helmet"
 
 export default function Kursus() {
 	return (
 		<main id="kursus">
+			<Helmet>
+				<title>Kursus | Bijakcuan.</title>
+			</Helmet>
 			<div className="container pt-4 pb-5">
 				<div className="row">
 					<div className="col-lg-4 kursus-nav d-flex flex-column gap-4">

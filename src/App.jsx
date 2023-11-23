@@ -23,7 +23,7 @@ export default function App() {
 	return (
 		<BrowserRouter>
 			<Helmet>
-				<title>Bijakcuan.</title>
+				<title>Bijakcuan | Pelatihan Keuangan untuk Sukses Finansial</title>
 			</Helmet>
 			<Navbar />
 			<Routes>
