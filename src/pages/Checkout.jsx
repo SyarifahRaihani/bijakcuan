@@ -1,7 +1,7 @@
 import "./css/checkout.css"
 import { useState, useEffect } from "react"
-import { useSearchParams } from "react-router-dom"
-import { Navigate } from "react-router-dom"
+import { useSearchParams, useNavigate } from "react-router-dom"
+import Helmet from "react-helmet"
 import axios from "axios"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faCircleCheck } from "@fortawesome/free-solid-svg-icons"
@@ -25,7 +25,6 @@ async function getToken(total, paket) {
 	}
 
 	const response = await axios.post(PAYMENT_GATEWAY_API_SERVER, data, config)
-	console.log(response.data.token)
 
 	return response.data.token
 }
@@ -33,24 +32,28 @@ async function getToken(total, paket) {
 export default function Checkout() {
 	const [searchParams] = useSearchParams()
 	const [selectedProgram, setSelectedProgram] = useState(programData[1])
+	const [discount, setDiscount] = useState(0)
+	const [totalPrice, setTotalPrice] = useState(0)
+	const [random, setRandom] = useState(0)
 	const paket = searchParams.get("paket")
+	const navigate = useNavigate()
 
 	useEffect(() => {
 		if (paket !== "Trial" && paket !== "Bulanan" && paket !== "Lifetime") {
-			return <Navigate to="/program" />
+			navigate("/program")
 		}
+
+		if (paket !== "Trial") {
+			setRandom(Math.floor(Math.random() * 100) + 1)
+		}
+
 		const program = programData.find((program) => program.name === paket)
 		setSelectedProgram(program)
 	}, [])
 
-	let random = Math.floor(Math.random() * 100) + 1
-
-	if (paket === "Trial") {
-		random = 0
-	}
-
-	const [discount, setDiscount] = useState(0)
-	const [totalPrice] = useState(selectedProgram.price - random)
+	useEffect(() => {
+		setTotalPrice(selectedProgram.price - random)
+	}, [selectedProgram, random])
 
 	const handleDiscount = (code) => {
 		const foundDiscount = discountData.find((item) => item.code === code)
@@ -68,6 +71,9 @@ export default function Checkout() {
 
 	return (
 		<main id="checkout">
+			<Helmet>
+				<title>Checkout | Bijakcuan.</title>
+			</Helmet>
 			<div className="container pt-4 pb-5">
 				<div className="row mb-4">
 					<div className="col-lg-6">

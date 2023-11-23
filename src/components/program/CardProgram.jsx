@@ -14,8 +14,6 @@ export default function CardProgram() {
 
 	useEffect(() => {
 		const isLoggedInUser = cookies.get("auth-login")
-		const program = programData.find((program) => program.name === paket)
-		console.log(program)
 		if (isLoggedInUser) {
 			setIsLoggedIn(true)
 		}
