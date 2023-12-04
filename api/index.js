@@ -3,11 +3,16 @@ const express = require("express")
 const jwt = require("jsonwebtoken")
 const cors = require("cors")
 const bcrypt = require("bcrypt")
-const fs = require("fs")
-const users = require("../src/data/users.json")
+const mysql = require("mysql2")
 
 const app = express()
 const PORT = 3001
+const connection = mysql.createConnection({
+	host: "localhost",
+	user: "root",
+	password: "root",
+	database: "bijakcuan_db",
+})
 
 const secretKey = require("crypto").randomBytes(32).toString("hex")
 
@@ -27,73 +32,70 @@ app.use(express.json())
 
 app.post("/api/daftar", async (req, res) => {
 	const { username, name, email, phone, password } = await req.body
-	if (users.find((u) => u.username === username)) {
-		return res.status(200).json({
-			failed: "Akun sudah digunakan. Silahkan gunakan akun yang lain.",
-		})
-	} else {
-		const newUser = {
-			id: users.length + 1,
-			username,
-			name,
-			email,
-			phone,
-			password: encryptPass(password),
-		}
-		users.push(newUser)
 
-		fs.writeFile("src/data/users.json", JSON.stringify(users), (err) => {
+	connection.connect()
+	connection.query(
+		`SELECT * FROM users WHERE username = '${username}' AND email = '${email}'`,
+		(err, rows) => {
 			if (err) {
-				console.error("Error writing to users.json", err)
+				console.log(err)
+				return
+			} else if (rows[0]) {
+				return res.status(200).json({
+					failed: "Akun sudah digunakan. Silahkan gunakan akun yang lain.",
+				})
 			} else {
-				console.log("User data saved successfully.")
+				connection.query(`
+				INSERT INTO users (name, username, email, phone, password)
+				VALUES ('${name}', '${username}', '${email}', '${phone}', '${encryptPass(
+					password
+				)}');`)
+				return res.status(200).json({
+					success: "Akun berhasil dibuat.",
+				})
 			}
-		})
-
-		const token = jwt.sign(
-			{
-				id: newUser.id,
-				username: newUser.username,
-				name: newUser.name,
-				email: newUser.email,
-				phone: newUser.phone,
-			},
-			secretKey,
-			{ expiresIn: "1h" }
-		)
-		res.json({ token })
-	}
+		}
+	)
 })
 
 app.post("/api/masuk", async (req, res) => {
 	const { username, password } = await req.body
 
-	const user = users.find(
-		(u) => u.username === username || u.email === username
+	connection.connect()
+	connection.query(
+		`SELECT * FROM users WHERE username = '${username}' OR email = '${username}'`,
+		(err, rows) => {
+			if (err) {
+				console.log(err)
+				return
+			} else if (!rows[0]) {
+				return res.status(200).json({
+					wrongUser: "Username yang Anda masukan salah",
+				})
+			} else {
+				const isPassMatch = checkPass(password, rows[0].password)
+				if (isPassMatch) {
+					const token = jwt.sign(
+						{
+							id: rows[0].id,
+							username: rows[0].username,
+							name: rows[0].name,
+							email: rows[0].email,
+							phone: rows[0].phone,
+							image: rows[0]?.image,
+						},
+						secretKey,
+						{ expiresIn: "1h" }
+					)
+					res.json({ token })
+				} else {
+					res.status(200).json({
+						wrongPass: "Password yang Anda masukan salah",
+					})
+				}
+			}
+		}
 	)
-
-	if (!user) {
-		return res.status(200).json({
-			wrongUser: "Username yang Anda masukan salah",
-		})
-	} else if (user && checkPass(password, user.password)) {
-		const token = jwt.sign(
-			{
-				id: user.id,
-				username: user.username,
-				name: user.name,
-				email: user.email,
-				phone: user.phone,
-			},
-			secretKey,
-			{ expiresIn: "1h" }
-		)
-		res.json({ token })
-	} else {
-		res.status(200).json({
-			wrongPass: "Password yang Anda masukan salah",
-		})
-	}
 })
 
 app.get("/", (req, res) => {
