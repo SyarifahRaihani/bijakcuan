@@ -13,6 +13,7 @@ export default function Daftar() {
 	const cookies = new Cookies()
 	const navigate = useNavigate()
 	const [failed, setFailed] = useState("")
+	const [success, setSuccess] = useState("")
 
 	useEffect(() => {
 		if (cookies.get("auth-login")) {
@@ -46,10 +47,12 @@ export default function Daftar() {
 					setFailed(failed)
 					return
 				} else {
-					const token = res.data.token
-					cookies.set("auth-login", token, { secure: true })
-					navigate("/")
-					window.location.reload()
+					// const token = res.data.token
+					// cookies.set("auth-login", token, { secure: true })
+					const success = res.data.success
+					setSuccess(success)
+					navigate("/masuk")
+					// window.location.reload()
 				}
 			})
 			.catch((error) => {
@@ -92,6 +95,11 @@ export default function Daftar() {
 								{failed && (
 									<div id="wrong" className="alert alert-danger mb-4">
 										<p>{failed}</p>
+									</div>
+								)}
+								{success && (
+									<div id="success" className="alert alert-success mb-4">
+										<p>{success}</p>
 									</div>
 								)}
 								<div className="d-flex flex-column gap-4">
