@@ -25,3 +25,11 @@
 #detailevent .hero {
   background-color: #131230;
 }
+
+.card p {
+	display: -webkit-box;
+	-webkit-line-clamp: 3;
+	-webkit-box-orient: vertical;  
+	overflow: hidden;
+  }
+
