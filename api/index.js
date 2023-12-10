@@ -10,7 +10,7 @@ const PORT = 3001
 const connection = mysql.createConnection({
 	host: "localhost",
 	user: "root",
-	password: "root",
+	password: "",
 	database: "bijakcuan_db",
 })
 
@@ -97,6 +97,59 @@ app.post("/api/masuk", async (req, res) => {
 		}
 	)
 })
+
+app.get("/api/promo", async (req, res) => {
+	try {
+		const query = "SELECT * FROM promo"
+		connection.query(query, (err, results) => {
+			if (err) {
+				console.error(err)
+				res.status(500).send(err)
+			} else {
+				res.json(results)
+			}
+		})
+	} catch (error) {
+		console.error(error)
+		res.status(500).send(error)
+	}
+})
+
+app.get("/api/artikel", async (req, res) => {
+	try {
+		const query = "SELECT * FROM artikel"
+		connection.query(query, (err, results) => {
+			if (err) {
+				console.error(err)
+				res.status(500).send(err)
+			} else {
+				res.json(results)
+			}
+		})
+	} catch (error) {
+		console.error(error)
+		res.status(500).send(error)
+	}
+})
+
+app.get("/api/detail/:id", async (req, res) => {
+	try {
+		const id = req.params.id
+		const query = "SELECT * from artikel WHERE id = ?;"
+		connection.query(query, [id], (err, results) => {
+			if (err) {
+				console.error(err)
+				res.status(500).send(err)
+			} else {
+				res.json(results[0])
+			}
+		})
+	} catch (error) {
+		console.error(error)
+		res.status(500).send(error)
+	}
+})
+
 
 app.get("/", (req, res) => {
 	res.send(`Server listening on port ${PORT}`)

@@ -1,57 +1,90 @@
-import { useParams, Link } from "react-router-dom"
-import { Helmet } from "react-helmet"
-import artikelData from "../data/artikelData.json"
+// src/components/DetailArtikel.js
+import { useState, useEffect } from "react";
+import { useParams, Link } from "react-router-dom";
+import axios from "axios";
+import { Helmet } from "react-helmet";
+import { SITE_URL } from "../utils/env"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons"
 import "./css/detailArtikel.css"
+import Cta from "../components/cta"
 
-const articlesToShow = [1, 2, 3, 4, 5]
-
-export default function DetailArtikel() {
-	const { id } = useParams()
-	const artikel = artikelData.find((artikel) => artikel.id === parseInt(id))
+const DetailArtikel = () => {
+	const { id } = useParams();
+	const [artikel, setArtikel] = useState({});
+	const [articlesToShow, setArticlesToShow] = useState([]);
+  
+	useEffect(() => {
+	const getDetailArtikel = async () => {
+		try {
+		const response = await axios.get(`${SITE_URL}/api/detail/${id}`);
+		console.log("API Response:", response.data);
+		setArtikel(response.data);
+		} catch (error) {
+		console.error(error);
+		}
+	};
+  
+	const getArticlesToShow = async () => {
+		try {
+		// Replace the following line with your API endpoint to fetch the list of articles.
+		const response = await axios.get(`${SITE_URL}/api/artikel`);
+		console.log("API Response for Articles:", response.data);
+		// Assuming response.data is an array of articles, set them to state.
+		setArticlesToShow(response.data);
+		} catch (error) {
+		console.error(error);
+		}
+	};
+  
+	getDetailArtikel();
+	getArticlesToShow();
+	}, [id]);
+  
+	// Filter out the current article from the list of articles to show.
 	const filteredArticlesToShow = articlesToShow.filter(
-		(articleId) => articleId !== parseInt(id)
-	)
+	(article) => article.id !== parseInt(id)
+	);
 
-	return (
-		<main id="detailArtikel">
-			<Helmet>
-				<title>{artikel.judul} | Bijakcuan.</title>
-			</Helmet>
-			<section className="hero-section">
-				<div className="container">
-					<Link
-						to="/artikel"
-						className="d-flex align-items-center justify-content-start gap-2 mb-4">
-						<FontAwesomeIcon
-							icon={faArrowLeft}
-							className="height-56"></FontAwesomeIcon>
-						Kembali
-					</Link>
-					<h1>{artikel.judul}</h1>
-				</div>
-			</section>
+  return (
+	<main id="detailArtikel">
+      <Helmet>
+        <title>{`${artikel.judul || "Bijakcuan."}`}</title>
+      </Helmet>
+	<section className="hero-section">
+		<div className="container">
+			<Link
+				to="/artikel"
+				className="d-flex align-items-center justify-content-start gap-2 mb-4">
+				<FontAwesomeIcon
+					icon={faArrowLeft}
+					className="height-56"></FontAwesomeIcon>
+				Kembali
+			</Link>
+			<h1>{artikel.judul}</h1>
+		</div>
+	</section>
 
-			<section className="detail-section">
-				<div className="py-5">
-					<img
-						src={artikel.gambar}
-						className="rounded mx-auto d-block"
-						alt={`Artikel ${artikel.id}`}
-					/>
-				</div>
+	<section className="detail-section">
+		<div className="py-5">
+			<img
+				src={artikel.image}
+				className="rounded mx-auto d-block"
+				alt={`Artikel ${artikel.id}`}
+			/>
+		</div>
 
-				{id === "1" && (
+    {id === "1" && (
 					<div className="id-artikel">
 						<h4 className="pb-3">
 							Bagaimana strategi untuk mengoptimalkan pengelolaan keuangan UMKM
 							agar dapat mencapai keberhasilan finansial yang berkelanjutan?
 						</h4>
 						<ol>
+              <h5>
 							<li>Pemahaman yang Mendalam tentang Pengeluaran</li>
+              </h5>
 							<p>
-								{" "}
 								Langkah pertama dalam mengoptimalkan pengelolaan keuangan UMKM
 								adalah memiliki pemahaman yang mendalam tentang semua
 								pengeluaran. Identifikasi dengan jelas semua biaya operasional,
@@ -61,8 +94,10 @@ export default function DetailArtikel() {
 								perencanaan keuangan yang lebih efektif.
 							</p>
 							<br />
+              <h5>
 							<li>Menerapkan Anggaran yang Ketat</li>
-							<p>
+							</h5>
+              <p>
 								Anggaran yang ketat adalah alat penting untuk mengontrol
 								pengeluaran dan mengarahkan dana ke area yang paling kritis.
 								Tetapkan anggaran untuk setiap aspek bisnis, dan pertimbangkan
@@ -72,8 +107,10 @@ export default function DetailArtikel() {
 								keuangan.
 							</p>
 							<br />
+              <h5>
 							<li>Memanfaatkan Teknologi Keuangan</li>
-							<p>
+							</h5>
+              <p>
 								Pemanfaatan teknologi keuangan, seperti perangkat lunak
 								akuntansi dan aplikasi keuangan, dapat memberikan kemudahan
 								dalam melacak transaksi, mengelola faktur, dan membuat laporan
@@ -82,8 +119,10 @@ export default function DetailArtikel() {
 								finansial bisnis.
 							</p>
 							<br />
+              <h5>
 							<li>Diversifikasi Sumber Pendapatan</li>
-							<p>
+							</h5>
+              <p>
 								Untuk mengurangi risiko finansial, UMKM sebaiknya diversifikasi
 								sumber pendapatan. Jangan terlalu bergantung pada satu produk
 								atau layanan. Pertimbangkan untuk mengembangkan produk baru atau
@@ -91,8 +130,10 @@ export default function DetailArtikel() {
 								lebih luas.
 							</p>
 							<br />
+              <h5>
 							<li>Pemantauan Terus-Menerus dan Evaluasi Kinerja Keuangan</li>
-							<p>
+							</h5>
+              <p>
 								Lakukan pemantauan keuangan secara terus-menerus dan evaluasi
 								kinerja keuangan secara berkala. Analisis rasio keuangan,
 								profitabilitas, dan arus kas dapat memberikan wawasan yang
@@ -115,6 +156,11 @@ export default function DetailArtikel() {
 
 				{id === "2" && (
 					<div className="id-artikel">
+						<h4 className="pb-3">
+							Bagaimana cara efektif untuk mengatur
+							keuangan usaha kecil Anda
+							agar dapat mencapai keberhasilan finansial yang berkelanjutan?
+						</h4>
 						<p className="pb-3">
 							Usaha kecil adalah tulang punggung perekonomian, namun, mengelola
 							keuangan untuk usaha kecil dapat menjadi tugas yang menantang.
@@ -192,8 +238,8 @@ export default function DetailArtikel() {
 				{id === "3" && (
 					<div className="id-artikel">
 						<h4 className="pb-3">
-							Strategi Membangun Dana Darurat Bisnis: Menjaga Keberlanjutan
-							Usaha dalam Kondisi Krisis
+							Bagaimana Strategi membangun dana darurat bisnis demi menjaga keberlanjutan
+							usaha dalam kondisi krisis?
 						</h4>
 						<p className="pb-3">
 							Dalam dunia bisnis yang penuh dengan ketidakpastian, memiliki dana
@@ -376,7 +422,7 @@ export default function DetailArtikel() {
 				{id === "5" && (
 					<div className="id-artikel">
 						<h4 className="pb-3">
-							Kiat Meningkatkan Pendapatan Bisnis Tanpa Menambah Utang
+							Bagaimana kiat untuk meningkatkan pendapatan bisnis tanpa menambah utang?
 						</h4>
 						<p className="pb-3">
 							Pendapatan adalah salah satu aspek kunci dalam kesuksesan bisnis.
@@ -497,56 +543,40 @@ export default function DetailArtikel() {
 						</ol>
 					</div>
 				)}
-			</section>
+	</section>
 
-			<section className="article-cards-section">
-				<div className="container pt-5 pb-5">
-					<h2 className="pb-1">Artikel Lainnya</h2>
-					<div className="row">
-						{filteredArticlesToShow.map((articleId) => {
-							const article = artikelData.find(
-								(artikel) => artikel.id === articleId
-							)
-							return (
-								<div key={article.id} className="col-lg-3 col-md-6 mb-4">
-									<div className="card">
-										<img
-											src={article.gambar}
-											className="card-img-top"
-											alt={`Artikel ${article.id}`}
-										/>
-										<div className="card-body">
-											<h6>{article.judul}</h6>
-										</div>
-										<div className="card-footer text-center">
-											<Link
-												to={`/detail/${article.id}`}
-												className="btn btn-primary ">
-												Baca
-											</Link>
-										</div>
-									</div>
-								</div>
-							)
-						})}
-					</div>
-				</div>
-			</section>
+	<section className="article-cards-section">
+      <div className="container pt-5 pb-5">
+        <h2 className="pb-1">Artikel Lainnya</h2>
+        <div className="row">
+          {filteredArticlesToShow.map((article) => (
+            <div key={article.id} className="col-lg-3 col-md-6 mb-4">
+              <div className="card">
+                <img
+                  src={article.image}
+                  className="card-img-top"
+                  alt={`Artikel ${article.id}`}
+                />
+                <div className="card-body">
+                  <h6>{article.judul}</h6>
+                </div>
+                <div className="card-footer text-center">
+                  <Link
+                    to={`/detail/${article.id}`}
+                    className="btn btn-primary"
+                  >
+                    Baca
+                  </Link>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+	<Cta />
+	</main>
+  );
+};
 
-			<div className="hero2">
-				<div className="container text-center">
-					<div className="row justify-content-center flex-column-reverse flex-lg-row">
-						<div className="col-lg-8">
-							<h1 className="text-white px-5 mb-5">
-								Buka Kesuksesan Finansial Anda Sekarang Bersama Bijakcuan
-							</h1>
-							<Link to={"/program"} className="btn btn-primary mb-10">
-								Gabung Sekarang
-							</Link>
-						</div>
-					</div>
-				</div>
-			</div>
-		</main>
-	)
-}
+export default DetailArtikel;
