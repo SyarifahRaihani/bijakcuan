@@ -30,7 +30,7 @@ async function OrderValidate(order_id, status_code, transaction_status) {
 		},
 	}
 	const response = await axios.post(
-		`${import.meta.env.VITE_API_URL}/api/v1/paySuccess`,
+		`${import.meta.env.VITE_API_URL}/api/v1/orderValidation`,
 		data,
 		config
 	)
