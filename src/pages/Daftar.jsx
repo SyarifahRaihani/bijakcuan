@@ -39,7 +39,7 @@ export default function Daftar() {
 		event.preventDefault()
 		setFailed("")
 		axios
-			.post(`${import.meta.env.VITE_API_URL}/api/v1/daftar`, values)
+			.post(`${import.meta.env.VITE_API_URL}/api/v1/daftar/`, values)
 			.then((res) => {
 				if (res.data.failed) {
 					const failed = res.data.failed
