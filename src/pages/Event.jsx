@@ -2,8 +2,23 @@ import "./css/event.css";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import CardEvent from "../components/event/CardEvent";
-import eventData from "../data/eventData.json";
+import { SITE_URL } from "../utils/env"
+import { useState, useEffect } from 'react';
+import axios from 'axios';
+
 export default function Event() {
+  const [events, setEvents] = useState([]);
+
+  useEffect(() => {
+    axios.get(`${SITE_URL}/api/events`)
+      .then(res => {
+        setEvents(res.data);
+      })
+      .catch(error => {
+        console.error('Error fetching event list:', error);
+      });
+  }, []);
+
   return (
     <main id="event">
       <Helmet>
@@ -26,7 +41,7 @@ export default function Event() {
               </Link>
             </div>
             <div className="col-lg-6">
-              <img className="img-fluid" src="/assets/event/event2.png" />
+              <img className="img-fluid rounded-5" src="/assets/event/event3.jpg" />
             </div>
           </div>
         </div>
@@ -34,12 +49,12 @@ export default function Event() {
       <div className="container pt-5 pb-5">
         <h2 className="mb-4">Event Lain</h2>
         <div className="row">
-          {eventData.map((event) => (
+          {events.map((event) => (
             <div className="col-lg-3 col-md-6 mb-4" key={event.id}>
               <CardEvent
                 id={event.id}
-                title={event.title}
-                text={event.text}
+                title={event.nama}
+                text={event.tentang}
                 image={event.image}
               />
             </div>

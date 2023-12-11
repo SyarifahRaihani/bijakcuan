@@ -10,7 +10,7 @@ const PORT = 3001
 const connection = mysql.createConnection({
 	host: "localhost",
 	user: "root",
-	password: "root",
+	password: "",
 	database: "bijakcuan_db",
 })
 
@@ -97,6 +97,42 @@ app.post("/api/masuk", async (req, res) => {
 		}
 	)
 })
+
+app.get('/api/events', (req, res) => {
+	connection.connect()
+	const query = 'SELECT * FROM event';
+	connection.query(query, (err, rows) => {
+		if (err) {
+			console.log(err)
+			res.status(500).send('Internal Server Error');
+		} else {
+			res.json(rows)
+		}
+	})
+})
+
+app.get('/api/events/:id', (req, res) => {
+	const eventId = req.params.id;
+	const query = `SELECT * FROM event WHERE id = ${eventId}`;
+	
+	connection.query(query, (err, rows) => {
+		if (err) {
+			console.log(err);
+			res.status(500).send('Internal Server Error');
+		} else {
+			if (rows.length > 0) {
+				let row = rows[0];
+				const temp_waktu_mulai = new Date(row.waktu_mulai).toLocaleString('id-ID', { timeZone: 'Asia/Jakarta' })
+				const temp_waktu_selesai = new Date(row.waktu_selesai).toLocaleString('id-ID', { timeZone: 'Asia/Jakarta' })
+				row.formatted_waktu_mulai = temp_waktu_mulai.replace(/\//g, '-').replace(/\./g, ':');
+				row.formatted_waktu_selesai = temp_waktu_selesai.replace(/\//g, '-').replace(/\./g, ':');
+				res.json(row);
+			} else {
+				res.status(404).send('Event not found');
+			}
+		}
+	});
+});
 
 app.get("/", (req, res) => {
 	res.send(`Server listening on port ${PORT}`)

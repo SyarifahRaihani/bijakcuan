@@ -2,29 +2,42 @@ import "./css/event.css"
 import { Helmet } from "react-helmet"
 import { Link } from "react-router-dom"
 import { useParams } from "react-router-dom"
-import eventData from "../data/eventData.json"
+import { SITE_URL } from "../utils/env"
+import { useState, useEffect } from 'react';
+import axios from 'axios';
 
 export default function DetailEvent() {
 	const { id } = useParams()
-	const event = eventData.find((event) => event.id === parseInt(id))
+	const [event, setEvent] = useState([]);
+
+	useEffect(() => {
+		axios.get(`${SITE_URL}/api/events/${id}`)
+			.then(res => {
+				setEvent(res.data);
+			})
+			.catch(error => {
+				console.error('Error fetching event:', error);
+			});
+	}, [id]);
 
 	return (
 		<main id="detailevent">
 			<Helmet>
-				<title>{event.title} | Bijakcuan.</title>
+				<title>Detail Event | Bijakcuan.</title>
+				{/* <title>{event.nama} | Bijakcuan.</title> */}
 			</Helmet>
 			<div className="hero">
 				<div className="container">
 					<div className="row justify-content-end flex-column-reverse flex-lg-row gap-5 gap-lg-0 align-items-center">
 						<div className="col-lg-6">
 							<p className="text-white mb-4">
-								Tanggal: <b>{event.date}</b>
+								Tanggal: <b>{event.formatted_waktu_mulai}</b>
 							</p>
-							<h1 className="mb-4 text-white">{event.title}</h1>
-							<p className="deskripsi mb-5 text-white">{event.text}</p>
+							<h1 className="mb-4 text-white">{event.nama}</h1>
+							<p className="deskripsi mb-5 text-white">{event.tentang}</p>
 						</div>
 						<div className="col-lg-6">
-							<img className="img-fluid" src="/assets/event/event2.png" />
+							<img className="img-fluid rounded-5" src={event.image} />
 						</div>
 					</div>
 				</div>
@@ -32,21 +45,11 @@ export default function DetailEvent() {
 			<div className="p-5">
 				<div className="row justify-content-between gap-5 gap-lg-0">
 					<div className="col-lg-7">
-						<h6 className="mb-3">{event.title}</h6>
-						{event.contents.map((content) => (
-							<p key={content}>
-								{content}
-								<br />
-								<br />
-							</p>
-						))}
+						<h6 className="mb-3">{event.nama}</h6>
+						<p style={{ whiteSpace: 'pre-line' }}>{event.deskripsi}</p>
+						<br />
 						<h6 className="mb-3">Apa yang akan kamu dapatkan? </h6>
-						{event.benefits.map((benefit) => (
-							<p key={benefit}>
-								{benefit}
-								<br />
-							</p>
-						))}
+						<p style={{ whiteSpace: 'pre-line' }}>{event.benefit}</p>
 					</div>
 					<div className="col-lg-4">
 						<div className="card p-4">
@@ -55,12 +58,12 @@ export default function DetailEvent() {
 								Perluas wawasan dan pengalamanmu dengan mengikuti event ini
 								sekarang.
 							</p>
-							<button className="btn btn-primary mb-5">Ikuti Event</button>
+							<Link to={event.link} className="btn btn-primary mb-5">Ikuti Event</Link>
 							<h6>Jadwal Pelaksanaan</h6>
-							<p>Mulai: {event.start}</p>
-							<p>Selesai: {event.end}</p>
+							<p>Mulai: {event.formatted_waktu_mulai}</p>
+							<p>Selesai: {event.formatted_waktu_selesai}</p>
 							<h6 className="mt-5">Lokasi</h6>
-							<p>{event.location}</p>
+							<p>{event.lokasi}</p>
 						</div>
 					</div>
 				</div>
