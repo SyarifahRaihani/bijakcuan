@@ -1,5 +1,5 @@
 #artikel .hero {
-	height: 500px;
+	height: 100%;
 	padding: 84px 0;
 	background-color: var(--secondary);
 	color: var(--white-secondary);
