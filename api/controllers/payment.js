@@ -9,7 +9,6 @@ async function order(req, res) {
 	if (
 		order_id === undefined ||
 		user_id === undefined ||
-		promo_id === undefined ||
 		paket === undefined ||
 		nama === undefined ||
 		email === undefined ||
