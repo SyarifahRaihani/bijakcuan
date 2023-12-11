@@ -1,89 +1,92 @@
 // src/components/DetailArtikel.js
-import { useState, useEffect } from "react";
-import { useParams, Link } from "react-router-dom";
-import axios from "axios";
-import { Helmet } from "react-helmet";
-import { SITE_URL } from "../utils/env"
+import { useState, useEffect } from "react"
+import { useParams, Link } from "react-router-dom"
+import axios from "axios"
+import { Helmet } from "react-helmet"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons"
 import "./css/detailArtikel.css"
 import Cta from "../components/cta"
 
 const DetailArtikel = () => {
-	const { id } = useParams();
-	const [artikel, setArtikel] = useState({});
-	const [articlesToShow, setArticlesToShow] = useState([]);
-  
+	const { id } = useParams()
+	const [artikel, setArtikel] = useState({})
+	const [articlesToShow, setArticlesToShow] = useState([])
+
 	useEffect(() => {
-	const getDetailArtikel = async () => {
-		try {
-		const response = await axios.get(`${SITE_URL}/api/detail/${id}`);
-		console.log("API Response:", response.data);
-		setArtikel(response.data);
-		} catch (error) {
-		console.error(error);
+		const getDetailArtikel = async () => {
+			try {
+				const response = await axios.get(
+					`${import.meta.env.VITE_API_URL}/api/detail/${id}`
+				)
+				console.log("API Response:", response.data)
+				setArtikel(response.data)
+			} catch (error) {
+				console.error(error)
+			}
 		}
-	};
-  
-	const getArticlesToShow = async () => {
-		try {
-		// Replace the following line with your API endpoint to fetch the list of articles.
-		const response = await axios.get(`${SITE_URL}/api/artikel`);
-		console.log("API Response for Articles:", response.data);
-		// Assuming response.data is an array of articles, set them to state.
-		setArticlesToShow(response.data);
-		} catch (error) {
-		console.error(error);
+
+		const getArticlesToShow = async () => {
+			try {
+				// Replace the following line with your API endpoint to fetch the list of articles.
+				const response = await axios.get(
+					`${import.meta.env.VITE_API_URL}/api/artikel`
+				)
+				console.log("API Response for Articles:", response.data)
+				// Assuming response.data is an array of articles, set them to state.
+				setArticlesToShow(response.data)
+			} catch (error) {
+				console.error(error)
+			}
 		}
-	};
-  
-	getDetailArtikel();
-	getArticlesToShow();
-	}, [id]);
-  
+
+		getDetailArtikel()
+		getArticlesToShow()
+	}, [id])
+
 	// Filter out the current article from the list of articles to show.
 	const filteredArticlesToShow = articlesToShow.filter(
-	(article) => article.id !== parseInt(id)
-	);
+		(article) => article.id !== parseInt(id)
+	)
 
-  return (
-	<main id="detailArtikel">
-      <Helmet>
-        <title>{`${artikel.judul || "Bijakcuan."}`}</title>
-      </Helmet>
-	<section className="hero-section">
-		<div className="container">
-			<Link
-				to="/artikel"
-				className="d-flex align-items-center justify-content-start gap-2 mb-4">
-				<FontAwesomeIcon
-					icon={faArrowLeft}
-					className="height-56"></FontAwesomeIcon>
-				Kembali
-			</Link>
-			<h1>{artikel.judul}</h1>
-		</div>
-	</section>
+	return (
+		<main id="detailArtikel">
+			<Helmet>
+				<title>{`${artikel.judul || "Bijakcuan."}`}</title>
+			</Helmet>
+			<section className="hero-section">
+				<div className="container">
+					<Link
+						to="/artikel"
+						className="d-flex align-items-center justify-content-start gap-2 mb-4">
+						<FontAwesomeIcon
+							icon={faArrowLeft}
+							className="height-56"></FontAwesomeIcon>
+						Kembali
+					</Link>
+					<h1>{artikel.judul}</h1>
+				</div>
+			</section>
 
-	<section className="detail-section">
-		<div className="py-5">
-			<img
-				src={artikel.image}
-				className="rounded mx-auto d-block"
-				alt={`Artikel ${artikel.id}`}
-			/>
-		</div>
+			<section className="detail-section">
+				<div className="py-5">
+					<img
+						src={artikel.image}
+						className="rounded mx-auto d-block"
+						alt={`Artikel ${artikel.id}`}
+					/>
+				</div>
 
-    {id === "1" && (
+				{id === "1" && (
 					<div className="id-artikel">
 						<h4 className="pb-3">
 							Bagaimana strategi untuk mengoptimalkan pengelolaan keuangan UMKM
 							agar dapat mencapai keberhasilan finansial yang berkelanjutan?
 						</h4>
 						<ol>
-              <h5>
-							<li>Pemahaman yang Mendalam tentang Pengeluaran</li>
-              </h5>
+							<h5>
+								<li>Pemahaman yang Mendalam tentang Pengeluaran</li>
+							</h5>
 							<p>
 								Langkah pertama dalam mengoptimalkan pengelolaan keuangan UMKM
 								adalah memiliki pemahaman yang mendalam tentang semua
@@ -94,10 +97,10 @@ const DetailArtikel = () => {
 								perencanaan keuangan yang lebih efektif.
 							</p>
 							<br />
-              <h5>
-							<li>Menerapkan Anggaran yang Ketat</li>
+							<h5>
+								<li>Menerapkan Anggaran yang Ketat</li>
 							</h5>
-              <p>
+							<p>
 								Anggaran yang ketat adalah alat penting untuk mengontrol
 								pengeluaran dan mengarahkan dana ke area yang paling kritis.
 								Tetapkan anggaran untuk setiap aspek bisnis, dan pertimbangkan
@@ -107,10 +110,10 @@ const DetailArtikel = () => {
 								keuangan.
 							</p>
 							<br />
-              <h5>
-							<li>Memanfaatkan Teknologi Keuangan</li>
+							<h5>
+								<li>Memanfaatkan Teknologi Keuangan</li>
 							</h5>
-              <p>
+							<p>
 								Pemanfaatan teknologi keuangan, seperti perangkat lunak
 								akuntansi dan aplikasi keuangan, dapat memberikan kemudahan
 								dalam melacak transaksi, mengelola faktur, dan membuat laporan
@@ -119,10 +122,10 @@ const DetailArtikel = () => {
 								finansial bisnis.
 							</p>
 							<br />
-              <h5>
-							<li>Diversifikasi Sumber Pendapatan</li>
+							<h5>
+								<li>Diversifikasi Sumber Pendapatan</li>
 							</h5>
-              <p>
+							<p>
 								Untuk mengurangi risiko finansial, UMKM sebaiknya diversifikasi
 								sumber pendapatan. Jangan terlalu bergantung pada satu produk
 								atau layanan. Pertimbangkan untuk mengembangkan produk baru atau
@@ -130,10 +133,10 @@ const DetailArtikel = () => {
 								lebih luas.
 							</p>
 							<br />
-              <h5>
-							<li>Pemantauan Terus-Menerus dan Evaluasi Kinerja Keuangan</li>
+							<h5>
+								<li>Pemantauan Terus-Menerus dan Evaluasi Kinerja Keuangan</li>
 							</h5>
-              <p>
+							<p>
 								Lakukan pemantauan keuangan secara terus-menerus dan evaluasi
 								kinerja keuangan secara berkala. Analisis rasio keuangan,
 								profitabilitas, dan arus kas dapat memberikan wawasan yang
@@ -157,8 +160,7 @@ const DetailArtikel = () => {
 				{id === "2" && (
 					<div className="id-artikel">
 						<h4 className="pb-3">
-							Bagaimana cara efektif untuk mengatur
-							keuangan usaha kecil Anda
+							Bagaimana cara efektif untuk mengatur keuangan usaha kecil Anda
 							agar dapat mencapai keberhasilan finansial yang berkelanjutan?
 						</h4>
 						<p className="pb-3">
@@ -238,8 +240,8 @@ const DetailArtikel = () => {
 				{id === "3" && (
 					<div className="id-artikel">
 						<h4 className="pb-3">
-							Bagaimana Strategi membangun dana darurat bisnis demi menjaga keberlanjutan
-							usaha dalam kondisi krisis?
+							Bagaimana Strategi membangun dana darurat bisnis demi menjaga
+							keberlanjutan usaha dalam kondisi krisis?
 						</h4>
 						<p className="pb-3">
 							Dalam dunia bisnis yang penuh dengan ketidakpastian, memiliki dana
@@ -422,7 +424,8 @@ const DetailArtikel = () => {
 				{id === "5" && (
 					<div className="id-artikel">
 						<h4 className="pb-3">
-							Bagaimana kiat untuk meningkatkan pendapatan bisnis tanpa menambah utang?
+							Bagaimana kiat untuk meningkatkan pendapatan bisnis tanpa menambah
+							utang?
 						</h4>
 						<p className="pb-3">
 							Pendapatan adalah salah satu aspek kunci dalam kesuksesan bisnis.
@@ -543,40 +546,39 @@ const DetailArtikel = () => {
 						</ol>
 					</div>
 				)}
-	</section>
+			</section>
 
-	<section className="article-cards-section">
-      <div className="container pt-5 pb-5">
-        <h2 className="pb-1">Artikel Lainnya</h2>
-        <div className="row">
-          {filteredArticlesToShow.map((article) => (
-            <div key={article.id} className="col-lg-3 col-md-6 mb-4">
-              <div className="card">
-                <img
-                  src={article.image}
-                  className="card-img-top"
-                  alt={`Artikel ${article.id}`}
-                />
-                <div className="card-body">
-                  <h6>{article.judul}</h6>
-                </div>
-                <div className="card-footer text-center">
-                  <Link
-                    to={`/detail/${article.id}`}
-                    className="btn btn-primary"
-                  >
-                    Baca
-                  </Link>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-	<Cta />
-	</main>
-  );
-};
+			<section className="article-cards-section">
+				<div className="container pt-5 pb-5">
+					<h2 className="pb-1">Artikel Lainnya</h2>
+					<div className="row">
+						{filteredArticlesToShow.map((article) => (
+							<div key={article.id} className="col-lg-3 col-md-6 mb-4">
+								<div className="card">
+									<img
+										src={article.image}
+										className="card-img-top"
+										alt={`Artikel ${article.id}`}
+									/>
+									<div className="card-body">
+										<h6>{article.judul}</h6>
+									</div>
+									<div className="card-footer text-center">
+										<Link
+											to={`/detail/${article.id}`}
+											className="btn btn-primary">
+											Baca
+										</Link>
+									</div>
+								</div>
+							</div>
+						))}
+					</div>
+				</div>
+			</section>
+			<Cta />
+		</main>
+	)
+}
 
-export default DetailArtikel;
+export default DetailArtikel
