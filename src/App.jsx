@@ -17,6 +17,7 @@ import Kontak from "./pages/Kontak"
 import Artikel from "./pages/Artikel"
 import DetailArtikel from "./pages/DetailArtikel"
 import PembayaranSukses from "./pages/PembayaranSukses"
+import PembayaranGagal from "./pages/PembayaranGagal"
 import Kursus from "./pages/Kursus"
 
 const MainLayout = ({ children }) => (
@@ -139,6 +140,7 @@ export default function App() {
 					}
 				/>
 				<Route path="/checkout/sukses" element={<PembayaranSukses />} />
+				<Route path="/checkout/gagal" element={<PembayaranGagal />} />
 				<Route path="/masuk" element={<Masuk />} />
 				<Route path="/daftar" element={<Daftar />} />
 				<Route path="*" element={<NotFound />} />
