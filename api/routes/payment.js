@@ -1,7 +1,8 @@
 const express = require("express")
 const app = express()
-const pay = require("../controllers/payment")
+const { order, orderValidation } = require("../controllers/payment")
 
-app.post("/pay", pay)
+app.post("/order", order)
+app.post("/orderValidation", orderValidation)
 
 module.exports = app

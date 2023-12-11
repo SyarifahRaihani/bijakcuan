@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom"
 import Helmet from "react-helmet"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faCheckCircle } from "@fortawesome/free-solid-svg-icons"
+import { faTimesCircle } from "@fortawesome/free-solid-svg-icons"
 
 export default function PembayaranSukses() {
 	return (
@@ -12,15 +12,14 @@ export default function PembayaranSukses() {
 			<div className="container align-items-center d-flex justify-content-center">
 				<div className="container-lg text-center">
 					<FontAwesomeIcon
-						icon={faCheckCircle}
+						icon={faTimesCircle}
 						className="mb-4 gagal"></FontAwesomeIcon>
-					<h1 className="mb-4">Pembayaran Sukses</h1>
+					<h1 className="mb-4">Pembayaran Gagal</h1>
 					<p className="mb-5 w-75 mx-auto">
-						Silahkan mempelajari materi kelas yang telah kami design dengan baik
-						untuk mencapai goals
+						Silahkan lakukan pembayaran pesanan Anda
 					</p>
-					<Link href={"/beranda"} className="btn btn-primary">
-						Mulai Belajar
+					<Link href={"/program"} className="btn btn-primary">
+						Kembali
 					</Link>
 				</div>
 			</div>
