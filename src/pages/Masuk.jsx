@@ -38,7 +38,7 @@ export default function Masuk() {
 		setWrongUser("")
 		setWrongPass("")
 		axios
-			.post(`${SITE_URL}/api/masuk`, values)
+			.post(`${SITE_URL}/api/v1/masuk`, values)
 			.then((res) => {
 				if (res.data.wrongUser) {
 					const wrong = res.data.wrongUser
