@@ -32,7 +32,7 @@ async function getToken(total, paket, discount) {
 	}
 
 	const response = await axios.post(
-		`${import.meta.env.VITE_API_URL}/api/v1/pay`,
+		`${import.meta.env.VITE_API_URL}/api/v1/order`,
 		data,
 		config
 	)
