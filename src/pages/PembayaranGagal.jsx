@@ -1,3 +1,4 @@
+import "./css/checkout.css"
 import { Link } from "react-router-dom"
 import Helmet from "react-helmet"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
@@ -5,7 +6,7 @@ import { faTimesCircle } from "@fortawesome/free-solid-svg-icons"
 
 export default function PembayaranSukses() {
 	return (
-		<main id="Sukses">
+		<main id="gagal">
 			<Helmet>
 				<title>Pembayaran Sukses | Bijakcuan.</title>
 			</Helmet>
@@ -13,7 +14,7 @@ export default function PembayaranSukses() {
 				<div className="container-lg text-center">
 					<FontAwesomeIcon
 						icon={faTimesCircle}
-						className="mb-4 gagal"></FontAwesomeIcon>
+						className="mb-4 text-danger"></FontAwesomeIcon>
 					<h1 className="mb-4">Pembayaran Gagal</h1>
 					<p className="mb-5 w-75 mx-auto">
 						Silahkan lakukan pembayaran pesanan Anda

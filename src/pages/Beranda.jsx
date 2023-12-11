@@ -6,6 +6,7 @@ import {
 	faCircleCheck,
 } from "@fortawesome/free-solid-svg-icons"
 import axios from "axios"
+import { jwtDecode } from "jwt-decode"
 import { Link, useLocation } from "react-router-dom"
 import { useNavigate } from "react-router-dom/dist"
 import { Cookies } from "react-cookie"
@@ -17,22 +18,18 @@ import "./css/beranda.css"
 async function OrderValidate(order_id, status_code, transaction_status) {
 	const navigate = useNavigate()
 	const cookies = new Cookies()
+	const user = await jwtDecode(cookies.get("auth-login"))
 
 	const data = {
 		order_id,
+		user_id: user.id,
 		status_code,
 		transaction_status,
 	}
 
-	const config = {
-		headers: {
-			"Content-Type": "application/json",
-		},
-	}
 	const response = await axios.post(
 		`${import.meta.env.VITE_API_URL}/api/v1/orderValidation`,
-		data,
-		config
+		data
 	)
 
 	if (response.status === 200) {
