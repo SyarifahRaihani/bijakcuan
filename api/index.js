@@ -1,11 +1,10 @@
-/* eslint-disable no-undef */
+require("dotenv").config()
 const express = require("express")
-const jwt = require("jsonwebtoken")
 const cors = require("cors")
-const bcrypt = require("bcrypt")
-const mysql = require("mysql2")
+const routes = require("./routes")
 
 const app = express()
+<<<<<<< HEAD
 const PORT = 3001
 const connection = mysql.createConnection({
 	host: "localhost",
@@ -26,10 +25,15 @@ const encryptPass = (password) => {
 	const hashedPassword = bcrypt.hashSync(password, salt)
 	return hashedPassword
 }
+=======
+const PORT = process.env.API_PORT
+>>>>>>> b32ec07d031e896ef783fe1dc3686bf272601a9e
 
 app.use(cors())
 app.use(express.json())
+app.use(routes)
 
+<<<<<<< HEAD
 app.post("/api/daftar", async (req, res) => {
 	const { username, name, email, phone, password } = await req.body
 
@@ -141,3 +145,6 @@ app.get("/", (req, res) => {
 app.listen(PORT, () => {
 	console.log(`Server is running on PORT ${PORT}`)
 })
+=======
+app.listen(PORT, () => console.log(`Server is running on PORT ${PORT}`))
+>>>>>>> b32ec07d031e896ef783fe1dc3686bf272601a9e

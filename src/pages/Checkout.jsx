@@ -1,6 +1,8 @@
 import "./css/checkout.css"
 import { useState, useEffect } from "react"
 import { useSearchParams, useNavigate } from "react-router-dom"
+import { jwtDecode } from "jwt-decode"
+import { Cookies } from "react-cookie"
 import Helmet from "react-helmet"
 import axios from "axios"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
@@ -10,11 +12,16 @@ import GenerateOrderId from "../components/checkout/generate-order-id"
 import programData from "../data/program-price.json"
 import discountData from "../data/checkout-discount.json"
 
-async function getToken(total, paket) {
-	const PAYMENT_GATEWAY_API_SERVER = "https://bijak-cuan-api.vercel.app/api"
+async function getToken(total, paket, discount) {
+	const cookies = new Cookies()
+	const user = await jwtDecode(cookies.get("auth-login"))
 	const data = {
 		order_id: GenerateOrderId(paket),
+		user_id: user.id,
+		promo_id: discount,
 		paket: paket,
+		nama: user.name,
+		email: user.email,
 		total: total,
 	}
 
@@ -24,7 +31,11 @@ async function getToken(total, paket) {
 		},
 	}
 
-	const response = await axios.post(PAYMENT_GATEWAY_API_SERVER, data, config)
+	const response = await axios.post(
+		`${import.meta.env.VITE_API_URL}/api/v1/order`,
+		data,
+		config
+	)
 
 	return response.data.token
 }
@@ -33,6 +44,7 @@ export default function Checkout() {
 	const [searchParams] = useSearchParams()
 	const [selectedProgram, setSelectedProgram] = useState(programData[1])
 	const [discount, setDiscount] = useState(0)
+	const [discountId, setDiscountId] = useState(null)
 	const [totalPrice, setTotalPrice] = useState(0)
 	const [random, setRandom] = useState(0)
 	const paket = searchParams.get("paket")
@@ -59,8 +71,10 @@ export default function Checkout() {
 		const foundDiscount = discountData.find((item) => item.code === code)
 		if (foundDiscount) {
 			setDiscount(foundDiscount.discount * selectedProgram.price)
+			setDiscountId(foundDiscount.id)
 		} else {
 			setDiscount(0)
+			setDiscountId(null)
 		}
 	}
 
@@ -151,7 +165,9 @@ export default function Checkout() {
 							</div>
 							<div className="card-footer">
 								<div
-									onClick={() => handleCheckout(totalPrice - discount, paket)}>
+									onClick={() =>
+										handleCheckout(totalPrice - discount, paket, discountId)
+									}>
 									<div className="btn btn-primary w-100">
 										Bayar & Gabung Kelas Sekarang
 									</div>

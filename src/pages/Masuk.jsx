@@ -4,7 +4,6 @@ import { faArrowLeft } from "@fortawesome/free-solid-svg-icons"
 import { Link } from "react-router-dom"
 import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom/dist"
-import { SITE_URL } from "../utils/env"
 import { Cookies } from "react-cookie"
 import Helmet from "react-helmet"
 import axios from "axios"
@@ -38,7 +37,7 @@ export default function Masuk() {
 		setWrongUser("")
 		setWrongPass("")
 		axios
-			.post(`${SITE_URL}/api/masuk`, values)
+			.post(`${import.meta.env.VITE_API_URL}/api/v1/masuk`, values)
 			.then((res) => {
 				if (res.data.wrongUser) {
 					const wrong = res.data.wrongUser
