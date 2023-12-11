@@ -3,7 +3,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons"
 import { Link } from "react-router-dom"
 import { Cookies } from "react-cookie"
-import { SITE_URL } from "../utils/env"
 import { useNavigate } from "react-router-dom/dist"
 import { useState, useEffect } from "react"
 import Helmet from "react-helmet"
@@ -40,7 +39,7 @@ export default function Daftar() {
 		event.preventDefault()
 		setFailed("")
 		axios
-			.post(`${SITE_URL}/api/v1/daftar`, values)
+			.post(`${import.meta.env.VITE_API_URL}/api/v1/daftar`, values)
 			.then((res) => {
 				if (res.data.failed) {
 					const failed = res.data.failed
