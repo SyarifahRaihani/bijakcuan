@@ -69,10 +69,11 @@ async function order(req, res) {
 }
 
 async function orderValidation(req, res) {
-	const { order_id, status_code, transaction_status } = await req.body
+	const { order_id, user_id, status_code, transaction_status } = await req.body
 
 	if (
 		order_id === undefined ||
+		user_id === undefined ||
 		status_code === undefined ||
 		transaction_status === undefined
 	) {
@@ -83,7 +84,7 @@ async function orderValidation(req, res) {
 		await query(
 			`
 		  INSERT INTO orders (status_order)
-		  VALUES (?);`,
+		  VALUES (?) WHERE order_id = ?;`,
 			[transaction_status]
 		)
 
