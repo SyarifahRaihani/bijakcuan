@@ -14,37 +14,41 @@ import programData from "../data/program-price.json"
 import Cta from "../components/cta"
 import "./css/beranda.css"
 
-export default async function Beranda() {
+async function OrderValidate(order_id, status_code, transaction_status) {
 	const navigate = useNavigate()
 	const cookies = new Cookies()
+
+	const data = {
+		order_id,
+		status_code,
+		transaction_status,
+	}
+
+	const config = {
+		headers: {
+			"Content-Type": "application/json",
+		},
+	}
+	const response = await axios.post(
+		`${import.meta.env.VITE_API_URL}/api/v1/paySuccess`,
+		data,
+		config
+	)
+
+	if (response.status === 200) {
+		cookies.set("auth-order", response.paket, { secure: true })
+		navigate("/checkout/sukses")
+	}
+}
+
+export default function Beranda() {
 	const { search } = useLocation()
 	const queryParams = new URLSearchParams(search)
 	const order_id = queryParams.get("order_id")
 	const status_code = queryParams.get("status_code")
 	const transaction_status = queryParams.get("transaction_status")
-
 	if (order_id && status_code && transaction_status) {
-		const data = {
-			order_id,
-			status_code,
-			transaction_status,
-		}
-
-		const config = {
-			headers: {
-				"Content-Type": "application/json",
-			},
-		}
-		const response = await axios.post(
-			`${import.meta.env.VITE_API_URL}/api/v1/paySuccess`,
-			data,
-			config
-		)
-
-		if (response.status === 200) {
-			cookies.set("auth-order", response.paket, { secure: true })
-			navigate("/checkout/sukses")
-		}
+		OrderValidate(order_id, status_code, transaction_status)
 	}
 	return (
 		<main id="beranda">
