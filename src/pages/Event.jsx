@@ -2,7 +2,6 @@ import "./css/event.css";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import CardEvent from "../components/event/CardEvent";
-import { SITE_URL } from "../utils/env"
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
@@ -10,7 +9,7 @@ export default function Event() {
   const [events, setEvents] = useState([]);
 
   useEffect(() => {
-    axios.get(`${SITE_URL}/api/events`)
+    axios.get(`${import.meta.env.VITE_API_URL}/api/v1/events`)
       .then(res => {
         setEvents(res.data);
       })

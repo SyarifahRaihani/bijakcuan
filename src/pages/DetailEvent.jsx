@@ -2,7 +2,6 @@ import "./css/event.css"
 import { Helmet } from "react-helmet"
 import { Link } from "react-router-dom"
 import { useParams } from "react-router-dom"
-import { SITE_URL } from "../utils/env"
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
@@ -11,7 +10,7 @@ export default function DetailEvent() {
 	const [event, setEvent] = useState([]);
 
 	useEffect(() => {
-		axios.get(`${SITE_URL}/api/events/${id}`)
+		axios.get(`${import.meta.env.VITE_API_URL}/api/v1/events/${id}`)
 			.then(res => {
 				setEvent(res.data);
 			})
