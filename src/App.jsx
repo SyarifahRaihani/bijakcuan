@@ -141,6 +141,7 @@ export default function App() {
 				<Route path="/checkout/sukses" element={<PembayaranSukses />} />
 				<Route path="/masuk" element={<Masuk />} />
 				<Route path="/daftar" element={<Daftar />} />
+				<Route path="*" element={<NotFound />} />
 			</Routes>
 		</BrowserRouter>
 	)
