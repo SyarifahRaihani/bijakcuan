@@ -81,18 +81,17 @@ async function orderValidation(req, res) {
 	}
 
 	try {
-		await query(
-			`
-		  INSERT INTO orders (status_order)
-		  VALUES (?) WHERE order_id = ?;`,
-			[transaction_status]
+		const isValid = await query(
+			`SELECT paket FROM orders WHERE id = ? AND user_id = ?;`,
+			[order_id, user_id]
 		)
 
-		const isValid = await query(`SELECT paket FROM orders WHERE id = ?;`, [
-			order_id,
-		])
-
 		if (isValid.length > 0) {
+			await query(
+				`
+				UPDATE orders SET status_order = ? WHERE order_id = ?;`,
+				[transaction_status, order_id]
+			)
 			return res.status(200).json({ paket: isValid[0] })
 		} else {
 			return res.status(400).json({ failed: "Order tidak ditemukan." })
