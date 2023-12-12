@@ -17,9 +17,11 @@ const DetailArtikel = () => {
 		const getDetailArtikel = async () => {
 			try {
 				const response = await axios.get(
-					`${import.meta.env.VITE_API_URL}/api/detail/${id}`
+					`${import.meta.env.VITE_API_URL}/api/v1/detail/${id}`
 				)
 				console.log("API Response:", response.data)
+				console.log("Judul Artikel:", response.data.judul);
+				console.log("Gambar Artikel:", response.data.image);
 				setArtikel(response.data)
 			} catch (error) {
 				console.error(error)
@@ -28,12 +30,10 @@ const DetailArtikel = () => {
 
 		const getArticlesToShow = async () => {
 			try {
-				// Replace the following line with your API endpoint to fetch the list of articles.
 				const response = await axios.get(
-					`${import.meta.env.VITE_API_URL}/api/artikel`
+					`${import.meta.env.VITE_API_URL}/api/v1/artikel`
 				)
 				console.log("API Response for Articles:", response.data)
-				// Assuming response.data is an array of articles, set them to state.
 				setArticlesToShow(response.data)
 			} catch (error) {
 				console.error(error)
@@ -44,7 +44,6 @@ const DetailArtikel = () => {
 		getArticlesToShow()
 	}, [id])
 
-	// Filter out the current article from the list of articles to show.
 	const filteredArticlesToShow = articlesToShow.filter(
 		(article) => article.id !== parseInt(id)
 	)
