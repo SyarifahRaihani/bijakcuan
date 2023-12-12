@@ -1,0 +1,35 @@
+
+[
+    {
+        "id": 1,
+        "image": "/assets/promo/image 2.png",
+        "nama_promo": "Diskon Khusus untuk Pelanggan Kartu BCA",
+        "deskripsi_promo": "Dapatkan diskon eksklusif dengan total 30% bagi pengguna bank BCA",
+        "kode_promo": "BCA30CUAN"
+    },
+
+    {
+        "id": 2,
+        "image": "/assets/promo/image 3.png",
+        "nama_promo": "Bonus E-book Pengelolaan Keuangan untuk Pemula ",
+        "deskripsi_promo": "Berlangganan paket lifetime onus e-book eksklusif tentang pengelolaan keuangan untuk pemula.",
+        "kode_promo": "EBOO72341K"
+    },
+
+    {
+        "id": 3,
+        "image": "/assets/promo/image 4.png",
+        "nama_promo": " Diskon Pelatihan Pengelolaan Utang",
+        "deskripsi_promo": "Hemat 25% untuk pelatihan strategi mengelola utang bisnis dengan lebih efektif dan hindari masalah keuangan.",
+        "kode_promo": "DEBTFREE25"
+    },
+
+    {
+        "id": 4,
+        "gambar": "/assets/promo/image 5.png",
+        "nama_promo": "Diskon 15% Seminar Keuangan Online",
+        "deskripsi_promo": "Nikmati diskon 15% untuk tiket seminar keuangan. Pelajari dari para ahli keuangan tanpa harus keluar rumah.",
+        "kode_promo": "SEMINAR15OFF"
+    }
+]
+

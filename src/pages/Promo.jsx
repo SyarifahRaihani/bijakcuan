@@ -4,7 +4,8 @@ import "./css/promo.css"
 import { Helmet } from "react-helmet"
 import { useState, useEffect } from "react"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faCopy, faCheck } from "@fortawesome/free-solid-svg-icons"
+import { faCopy, faCheck } from "@fortawesome/free-solid-svg-icons" 
+
 
 export default function Promo() {
 	const [copySuccess, setCopySuccess] = useState(null)
@@ -16,7 +17,7 @@ export default function Promo() {
 
 	const getPromo = async () => {
 		const response = await axios.get(
-			`${import.meta.env.VITE_API_URL}/api/promo`
+			`${import.meta.env.VITE_API_URL}/api/V1/promo`
 		)
 		setPromo(response.data)
 	}
