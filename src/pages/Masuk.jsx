@@ -49,8 +49,12 @@ export default function Masuk() {
 					return
 				} else {
 					const token = res.data.token
-
 					cookies.set("auth-login", token, { secure: true })
+
+					if (res.data.order) {
+						const order = res.data.order
+						cookies.set("auth-order", order, { secure: true })
+					}
 
 					navigate("/")
 					window.location.reload()

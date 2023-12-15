@@ -98,7 +98,19 @@ async function masuk(req, res) {
 					secretKey,
 					{ expiresIn: "1h" }
 				)
-				res.json({ token })
+
+				const isCourse = await query(
+					`SELECT status_order, id FROM orders WHERE user_id = ?;`,
+					[isUser[0].id]
+				)
+
+				if (isCourse.length > 0) {
+					if (isCourse[isCourse.length - 1].status_order == "settlement") {
+						res.json({ token: token, order: isCourse[isCourse.length - 1].id })
+					}
+				} else {
+					res.json({ token })
+				}
 			} else {
 				res.status(200).json({
 					wrongPass: "Password yang Anda masukan salah",

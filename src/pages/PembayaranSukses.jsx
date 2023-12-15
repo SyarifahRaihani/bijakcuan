@@ -20,7 +20,7 @@ export default function PembayaranSukses() {
 						Silahkan mempelajari materi kelas yang telah kami design dengan baik
 						untuk mencapai goals
 					</p>
-					<Link href={"/beranda"} className="btn btn-primary">
+					<Link to="/profil" className="btn btn-primary">
 						Mulai Belajar
 					</Link>
 				</div>
