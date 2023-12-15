@@ -51,18 +51,12 @@ export default function CardProgram() {
 				<div id="content-benefit">
 					<h6>Benefit</h6>
 					<div className="d-flex flex-column gap-2">
-						<div className="d-flex gap-2">
-							<FontAwesomeIcon icon={faCircleCheck} />
-							<p>Materi Up-To-Date</p>
-						</div>
-						<div className="d-flex gap-2">
-							<FontAwesomeIcon icon={faCircleCheck} />
-							<p>Mentor Profesional</p>
-						</div>
-						<div className="d-flex gap-2">
-							<FontAwesomeIcon icon={faCircleCheck} />
-							<p>Forum Diskusi</p>
-						</div>
+						{selectedProgram.benefit.map((benefit, index) => (
+							<div className="d-flex gap-2" key={index}>
+								<FontAwesomeIcon icon={faCircleCheck} />
+								<p>{benefit}</p>
+							</div>
+						))}
 					</div>
 				</div>
 				<div id="content-price">

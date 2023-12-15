@@ -5,10 +5,12 @@ import Pengaturan from "../profile/Pengaturan"
 import KursusSaya from "../profile/KursusSaya"
 import Transaksi from "../profile/Transaksi"
 import "../css/profil.css"
+import { jwtDecode } from "jwt-decode"
 
 export default function Profil() {
 	const cookies = new Cookies()
 	const navigate = useNavigate()
+	const user = jwtDecode(cookies.get("auth-login"))
 	const [activeTab, setActiveTab] = useState("kursus-saya")
 
 	const handleTabChange = (selectedTab) => {
@@ -17,6 +19,7 @@ export default function Profil() {
 
 	const handleLogout = () => {
 		cookies.remove("auth-login", { path: "/" })
+		cookies.remove("auth-order", { path: "/" })
 		navigate("/")
 		window.location.reload()
 	}
@@ -35,7 +38,7 @@ export default function Profil() {
 										className="rounded-circle img-fluid"
 										style={{ width: "100px" }}
 									/>
-									<p className="mt-2">Halo, Ani</p>
+									<p className="mt-2">Halo, {user.name}</p>
 								</div>
 								<hr className="mb-0" />
 								<div className="sidebar">

@@ -4,20 +4,38 @@
 		"name": "Trial",
 		"price": 0,
 		"initial-price": 49000,
-		"tagline": "Coba Gratis"
+		"tagline": "Coba Gratis",
+		"benefit": [
+			"Akses Tanpa Biaya",
+			"Materi Up-To-Date",
+			"Mentor Profesional",
+			"Forum Diskusi"
+		]
 	},
 	{
 		"id": 2,
 		"name": "Bulanan",
 		"price": 99000,
 		"initial-price": 199000,
-		"tagline": "Harga Terbaik"
+		"tagline": "Harga Terbaik",
+		"benefit": [
+			"Akses Penuh 1 Bulan",
+			"Materi Up-To-Date",
+			"Mentor Profesional",
+			"Forum Diskusi"
+		]
 	},
 	{
 		"id": 3,
 		"name": "Lifetime",
 		"price": 249000,
 		"initial-price": 599000,
-		"tagline": "Akses Selamanya"
+		"tagline": "Akses Selamanya",
+		"benefit": [
+			"Akses Penuh Selamanya",
+			"Materi Up-To-Date",
+			"Mentor Profesional",
+			"Forum Diskusi"
+		]
 	}
 ]
