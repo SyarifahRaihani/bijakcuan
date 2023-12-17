@@ -53,7 +53,12 @@ export default function Masuk() {
 
 					if (res.data.order) {
 						const order = res.data.order
-						cookies.set("auth-order", order, { secure: true })
+						const paket = order.split("-")[1]
+						if (paket === "Trial") {
+							cookies.set("auth-trial", order, { secure: true })
+						} else {
+							cookies.set("auth-order", order, { secure: true })
+						}
 					}
 
 					navigate("/")

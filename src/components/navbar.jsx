@@ -45,19 +45,34 @@ export default function Navbar() {
 								Beranda
 							</Link>
 						</li>
+						{cookies.get("auth-order") ? (
+							<li className="nav-item">
+								<Link
+									className={`nav-link ${
+										route.pathname === "/profil" ? "active" : ""
+									}`}
+									to="/profil">
+									Kursus
+								</Link>
+							</li>
+						) : (
+							<li className="nav-item">
+								<Link
+									className={`nav-link ${
+										route.pathname === "/program" ||
+										route.pathname === "/checkout"
+											? "active"
+											: ""
+									}`}
+									to="/program">
+									Program
+								</Link>
+							</li>
+						)}
 						<li className="nav-item">
 							<Link
 								className={`nav-link ${
-									route.pathname === "/program" ? "active" : ""
-								}`}
-								to="/program">
-								Program
-							</Link>
-						</li>
-						<li className="nav-item">
-							<Link
-								className={`nav-link ${
-									route.pathname === "/event" ? "active" : ""
+									route.pathname.startsWith("/event") ? "active" : ""
 								}`}
 								to="/event">
 								Event
@@ -75,7 +90,7 @@ export default function Navbar() {
 						<li className="nav-item">
 							<Link
 								className={`nav-link ${
-									route.pathname === "/artikel" ? "active" : ""
+									route.pathname.startsWith("/artikel") ? "active" : ""
 								}`}
 								to="/artikel">
 								Artikel

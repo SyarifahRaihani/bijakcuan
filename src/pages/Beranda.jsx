@@ -39,6 +39,7 @@ async function OrderValidate(order_id, status_code, transaction_status) {
 }
 
 export default function Beranda() {
+	const cookies = new Cookies()
 	const { search } = useLocation()
 	const queryParams = new URLSearchParams(search)
 	const order_id = queryParams.get("order_id")
@@ -82,7 +83,6 @@ export default function Beranda() {
 								height="315"
 								src="https://www.youtube.com/embed/z_rxu7LwChE?si=2lTP3RpO_-gUqrh2"
 								title="YouTube video player"
-								frameborder="0"
 								allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
 								allowfullscreen></iframe>
 						</div>
@@ -96,77 +96,100 @@ export default function Beranda() {
 								Terjebak Utang.
 							</p>
 							<Link to={"/program"} className="btn btn-primary">
-								Cegah Sekarang
+								Hindari Kebangkrutan
 							</Link>
 						</div>
 					</div>
 				</div>
 			</section>
 
-			<section id="benefit">
-				<div className="container">
-					<h2 className="text-center mb-5">Melangkah Bersama Bijakcuan</h2>
-					<div className="row d-none d-lg-flex gap-5 justify-content-between mb-5">
-						<div className="col-lg-3 d-flex align-items-center gap-3">
-							<FontAwesomeIcon icon={faListCheck} />
-							<p>
-								Materi Dari <b>Para Expert</b> Dibidang Keuangan
-							</p>
-						</div>
-						<div className="col-lg-3 d-flex align-items-center gap-3">
-							<FontAwesomeIcon icon={faCommentDots} />
-							<p>
-								Konsultasi Kendala Keuanganmu <b>Bersama Ahli</b>
-							</p>
-						</div>
-						<div className="col-lg-3 d-flex align-items-center gap-3">
-							<FontAwesomeIcon icon={faCircleCheck} />
-							<p>
-								Data Yang Aktual Berdasarkan <b>Riset Mendalam</b>
-							</p>
+			{cookies.get("auth-order") ? (
+				<section id="benefit">
+					<div className="container">
+						<h2 className="text-center mb-4">
+							Selamat Datang Member Bijakcuan
+						</h2>
+						<div
+							id="program"
+							className="row gap-5 gap-lg-0 text-center align-items-center justify-content-center">
+							<div className="col-lg-5">
+								<p className="mb-5">
+									Mari pelajari materi kelas yang telah kami desain dengan baik
+									untuk mencapai goals Anda
+								</p>
+								<Link to={"/profil"} className="btn btn-primary w-auto mx-auto">
+									Mulai Belajar
+								</Link>
+							</div>
 						</div>
 					</div>
-					<div
-						id="program"
-						className="row gap-5 gap-lg-0 text-center align-items-center">
-						{programData.map((program) => (
-							<div className="col-lg-4" key={program.id}>
-								<div
-									className={`card ${
-										program.name === "Bulanan" ? "primary" : ""
-									}`}>
-									<div className="card-header">
-										<h3>{program.name}</h3>
-										<div className="btn btn-outline-dark">
-											{program.tagline}
+				</section>
+			) : (
+				<section id="benefit">
+					<div className="container">
+						<h2 className="text-center mb-5">Melangkah Bersama Bijakcuan</h2>
+						<div className="row d-none d-lg-flex gap-5 justify-content-between mb-5">
+							<div className="col-lg-3 d-flex align-items-center gap-3">
+								<FontAwesomeIcon icon={faListCheck} />
+								<p>
+									Materi Dari <b>Para Expert</b> Dibidang Keuangan
+								</p>
+							</div>
+							<div className="col-lg-3 d-flex align-items-center gap-3">
+								<FontAwesomeIcon icon={faCommentDots} />
+								<p>
+									Konsultasi Kendala Keuanganmu <b>Bersama Ahli</b>
+								</p>
+							</div>
+							<div className="col-lg-3 d-flex align-items-center gap-3">
+								<FontAwesomeIcon icon={faCircleCheck} />
+								<p>
+									Data Yang Aktual Berdasarkan <b>Riset Mendalam</b>
+								</p>
+							</div>
+						</div>
+						<div
+							id="program"
+							className="row gap-5 gap-lg-0 text-center align-items-center">
+							{programData.map((program) => (
+								<div className="col-lg-4" key={program.id}>
+									<div
+										className={`card ${
+											program.name === "Bulanan" ? "primary" : ""
+										}`}>
+										<div className="card-header">
+											<h3>{program.name}</h3>
+											<div className="btn btn-outline-dark">
+												{program.tagline}
+											</div>
 										</div>
-									</div>
-									<div className="card-body"></div>
-									<div className="card-footer">
-										<div className="discount">
-											{program.name === "Trial" ? (
-												<p>Gratis</p>
-											) : (
-												<p>{FormatCurrency(program["initial-price"])}</p>
-											)}
+										<div className="card-body"></div>
+										<div className="card-footer">
+											<div className="discount">
+												{program.name === "Trial" ? (
+													<p>Gratis</p>
+												) : (
+													<p>{FormatCurrency(program["initial-price"])}</p>
+												)}
+											</div>
+											<h2 className="price">
+												{program.name === "Trial" ? (
+													<p>Gratis</p>
+												) : (
+													<p>{FormatCurrency(program.price)}</p>
+												)}
+											</h2>
+											<Link to={"/program"} className="w-100 btn btn-primary">
+												Dapatkan Sekarang
+											</Link>
 										</div>
-										<h2 className="price">
-											{program.name === "Trial" ? (
-												<p>Gratis</p>
-											) : (
-												<p>{FormatCurrency(program.price)}</p>
-											)}
-										</h2>
-										<Link to={"/program"} className="w-100 btn btn-primary">
-											Dapatkan Sekarang
-										</Link>
 									</div>
 								</div>
-							</div>
-						))}
+							))}
+						</div>
 					</div>
-				</div>
-			</section>
+				</section>
+			)}
 
 			<section id="beranda-info">
 				<div className="container text-center py-3">
@@ -201,7 +224,7 @@ export default function Beranda() {
 				</div>
 			</section>
 
-			<Cta />
+			{!cookies.get("auth-order") && <Cta />}
 		</main>
 	)
 }

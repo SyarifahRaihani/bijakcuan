@@ -92,7 +92,7 @@ export default function App() {
 					}
 				/>
 				<Route
-					path="/detail/:id"
+					path="/artikel/:id"
 					element={
 						<MainLayout>
 							<DetailArtikel />

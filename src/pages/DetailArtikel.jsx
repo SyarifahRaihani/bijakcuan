@@ -5,10 +5,12 @@ import axios from "axios"
 import { Helmet } from "react-helmet"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons"
+import { Cookies } from "react-cookie"
 import "./css/detailArtikel.css"
 import Cta from "../components/cta"
 
 const DetailArtikel = () => {
+	const cookies = new Cookies()
 	const { id } = useParams()
 	const [artikel, setArtikel] = useState({})
 	const [articlesToShow, setArticlesToShow] = useState([])
@@ -17,11 +19,11 @@ const DetailArtikel = () => {
 		const getDetailArtikel = async () => {
 			try {
 				const response = await axios.get(
-					`${import.meta.env.VITE_API_URL}/api/v1/detail/${id}`
+					`${import.meta.env.VITE_API_URL}/api/v1/artikel/${id}`
 				)
 				console.log("API Response:", response.data)
-				console.log("Judul Artikel:", response.data.judul);
-				console.log("Gambar Artikel:", response.data.image);
+				console.log("Judul Artikel:", response.data.judul)
+				console.log("Gambar Artikel:", response.data.image)
 				setArtikel(response.data)
 			} catch (error) {
 				console.error(error)
@@ -564,8 +566,8 @@ const DetailArtikel = () => {
 									</div>
 									<div className="card-footer text-center">
 										<Link
-											to={`/detail/${article.id}`}
-											className="btn btn-primary">
+											to={`/artikel/${article.id}`}
+											className="btn btn-primary w-100">
 											Baca
 										</Link>
 									</div>
@@ -575,7 +577,7 @@ const DetailArtikel = () => {
 					</div>
 				</div>
 			</section>
-			<Cta />
+			{!cookies.get("auth-order") && <Cta />}
 		</main>
 	)
 }
