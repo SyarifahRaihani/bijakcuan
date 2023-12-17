@@ -3,6 +3,6 @@ const app = express()
 const { getAllArtikel, getAllArtikelById  } = require("../controllers/artikel")
 
 app.get("/artikel", getAllArtikel)
-app.get("/detail/:id", getAllArtikelById)
+app.get("/artikel/:id", getAllArtikelById)
 
 module.exports = app

@@ -9,9 +9,8 @@
 #checkout .btn-light:hover {
 	background-color: var(--white-primary);
 }
-#checkout svg {
+#checkout #checkout-benefit svg {
 	height: 24px;
-	color: var(--info);
 }
 
 #sukses,

@@ -45,19 +45,64 @@ export default function Navbar() {
 								Beranda
 							</Link>
 						</li>
+						{cookies.get("auth-order") === undefined ||
+						cookies.get("auth-order").split("-")[1] === "Trial" ? (
+							<li className="nav-item">
+								<Link
+									className={`nav-link ${
+										route.pathname === "/program" ||
+										route.pathname === "/checkout"
+											? "active"
+											: ""
+									}`}
+									to="/program">
+									Program
+								</Link>
+							</li>
+						) : (
+							cookies.get("auth-order").split("-")[1] !== "Bulanan" ||
+							cookies.get("auth-order").split("-")[1] !==
+								"Lifetime"(
+									<li className="nav-item">
+										<Link
+											className={`nav-link ${
+												route.pathname === "/profil" ? "active" : ""
+											}`}
+											to="/profil">
+											Kursus
+										</Link>
+									</li>
+								)
+						)}
+						{/* && (cookies.get("auth-order").split("-")[1] !== "Bulanan" ||
+						cookies.get("auth-order").split("-")[1] !== "Lifetime") ? (
 						<li className="nav-item">
 							<Link
 								className={`nav-link ${
-									route.pathname === "/program" ? "active" : ""
+									route.pathname === "/program" ||
+									route.pathname === "/checkout"
+										? "active"
+										: ""
 								}`}
 								to="/program">
 								Program
 							</Link>
 						</li>
+						) : (
 						<li className="nav-item">
 							<Link
 								className={`nav-link ${
-									route.pathname === "/event" ? "active" : ""
+									route.pathname === "/profil" ? "active" : ""
+								}`}
+								to="/profil">
+								Kursus
+							</Link>
+						</li>
+						)} */}
+						<li className="nav-item">
+							<Link
+								className={`nav-link ${
+									route.pathname.startsWith("/event") ? "active" : ""
 								}`}
 								to="/event">
 								Event
@@ -75,7 +120,7 @@ export default function Navbar() {
 						<li className="nav-item">
 							<Link
 								className={`nav-link ${
-									route.pathname === "/artikel" ? "active" : ""
+									route.pathname.startsWith("/artikel") ? "active" : ""
 								}`}
 								to="/artikel">
 								Artikel

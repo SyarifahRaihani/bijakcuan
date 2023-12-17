@@ -1,12 +1,12 @@
 import "./css/checkout.css"
 import { useState, useEffect } from "react"
-import { useSearchParams, useNavigate } from "react-router-dom"
+import { useSearchParams, useNavigate, Link } from "react-router-dom"
 import { jwtDecode } from "jwt-decode"
 import { Cookies } from "react-cookie"
 import Helmet from "react-helmet"
 import axios from "axios"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faCircleCheck } from "@fortawesome/free-solid-svg-icons"
+import { faArrowLeft, faCircleCheck } from "@fortawesome/free-solid-svg-icons"
 import FormatCurrency from "../components/format-currency"
 import GenerateOrderId from "../components/checkout/generate-order-id"
 import programData from "../data/program-price.json"
@@ -47,6 +47,7 @@ export default function Checkout() {
 	const [discountId, setDiscountId] = useState(null)
 	const [totalPrice, setTotalPrice] = useState(0)
 	const [random, setRandom] = useState(0)
+	const cookies = new Cookies()
 	const paket = searchParams.get("paket")
 	const navigate = useNavigate()
 
@@ -80,7 +81,12 @@ export default function Checkout() {
 
 	const handleCheckout = async (total, paket) => {
 		let token = await getToken(total, paket)
-		window.location.href = `https://app.sandbox.midtrans.com/snap/v3/redirection/${token}`
+		if (total === 0 && paket === "Trial") {
+			cookies.set("auth-order", token, { secure: true })
+			navigate("/checkout/sukses")
+		} else {
+			window.location.href = `https://app.sandbox.midtrans.com/snap/v3/redirection/${token}`
+		}
 	}
 
 	return (
@@ -89,6 +95,14 @@ export default function Checkout() {
 				<title>Checkout | Bijakcuan.</title>
 			</Helmet>
 			<div className="container pt-4 pb-5">
+				<Link to="/program">
+					<div className="d-flex align-items-center gap-2 mb-4">
+						<FontAwesomeIcon
+							icon={faArrowLeft}
+							className="text-black"></FontAwesomeIcon>
+						<p>Kembali</p>
+					</div>
+				</Link>
 				<div className="row mb-4">
 					<div className="col-lg-6">
 						<h2>Laporan Terakhir Dapatkan Pembelajaran Impian Anda</h2>
@@ -104,17 +118,26 @@ export default function Checkout() {
 							</div>
 							<div className="card-body">
 								<h4 className="mb-4">Bijakcuan Membership</h4>
-								<div className="d-flex flex-column gap-2">
+								<div id="checkout-benefit" className="d-flex flex-column gap-2">
 									<div className="d-flex gap-2 align-item-center">
-										<FontAwesomeIcon icon={faCircleCheck} />
+										<FontAwesomeIcon
+											icon={faCircleCheck}
+											className="text-success"
+										/>
 										<p>Materi Up-To-Date</p>
 									</div>
 									<div className="d-flex gap-2 align-item-center">
-										<FontAwesomeIcon icon={faCircleCheck} />
+										<FontAwesomeIcon
+											icon={faCircleCheck}
+											className="text-success"
+										/>
 										<p>Mentor Profesional</p>
 									</div>
 									<div className="d-flex gap-2 align-item-center">
-										<FontAwesomeIcon icon={faCircleCheck} />
+										<FontAwesomeIcon
+											icon={faCircleCheck}
+											className="text-success"
+										/>
 										<p>Forum Diskusi</p>
 									</div>
 								</div>
