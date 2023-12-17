@@ -15,6 +15,8 @@ export default function Masuk() {
 	const [wrongPass, setWrongPass] = useState("")
 
 	useEffect(() => {
+		const date = new Date()
+		console.log(date.toLocaleDateString())
 		if (cookies.get("auth-login")) {
 			navigate("/")
 		}

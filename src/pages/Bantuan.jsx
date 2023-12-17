@@ -1,9 +1,11 @@
 import "./css/bantuan.css"
-import { Link } from "react-router-dom"
 import Helmet from "react-helmet"
 import faqData from "../data/bantuan-data"
+import { Cookies } from "react-cookie"
+import Cta from "../components/cta"
 
 export default function Bantuan() {
+	const cookies = new Cookies()
 	return (
 		<main id="bantuan">
 			<Helmet>
@@ -100,7 +102,7 @@ export default function Bantuan() {
 			</section>
 
 			<section id="faq">
-				<div className="container col-7">
+				<div className="container col-7 mb-5">
 					<h3 className="text-center pb-3 ">
 						Pertanyaan Yang Sering Di tayakan
 					</h3>
@@ -130,22 +132,7 @@ export default function Bantuan() {
 				</div>
 			</section>
 
-			<section>
-				<div className="hero2 mt-5">
-					<div className="container text-center">
-						<div className="row justify-content-center flex-column-reverse flex-lg-row">
-							<div className="col-lg-8">
-								<h1 className="text-white px-5 mb-5">
-									Buka Kesuksesan Finansial Anda Sekarang Bersama Bijakcuan
-								</h1>
-								<Link to={"/program"} className="btn btn-primary mb-10">
-									Gabung Sekarang
-								</Link>
-							</div>
-						</div>
-					</div>
-				</div>
-			</section>
+			{!cookies.get("auth-order") && <Cta />}
 		</main>
 	)
 }

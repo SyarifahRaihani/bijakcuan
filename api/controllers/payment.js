@@ -23,46 +23,50 @@ async function order(req, res) {
 
 		await query(
 			`
-		  INSERT INTO orders (id, user_id, promo_id, paket, total)
-		  VALUES (?, ?, ?, ?, ?);`,
+		  INSERT INTO orders (id, user_id, promo_id, paket, total, created_at)
+		  VALUES (?, ?, ?, ?, ?, NOW());`,
 			[order_id, user_id, promo_id, paket, total]
 		)
 
-		let snap = new midtransClient.Snap({
-			isProduction: false,
-			serverKey: serverKey,
-			clientKey: clientKey,
-		})
+		if (total > 0) {
+			let snap = new midtransClient.Snap({
+				isProduction: false,
+				serverKey: serverKey,
+				clientKey: clientKey,
+			})
 
-		let parameter = {
-			transaction_details: {
-				order_id: order_id,
-				gross_amount: total,
-			},
-			item_details: [
-				{
-					price: total,
-					quantity: 1,
-					name: `Bijakcuan Membership ${paket}`,
-					category: paket,
-					merchant_name: "Bijakcuan.",
-					url: "bijakcuan-new.vercel.app",
+			let parameter = {
+				transaction_details: {
+					order_id: order_id,
+					gross_amount: total,
 				},
-			],
-			customer_details: {
-				first_name: nama,
-				email: email,
-			},
-			credit_card: {
-				secure: true,
-			},
-		}
+				item_details: [
+					{
+						price: total,
+						quantity: 1,
+						name: `Bijakcuan Membership ${paket}`,
+						category: paket,
+						merchant_name: "Bijakcuan.",
+						url: "bijakcuan-new.vercel.app",
+					},
+				],
+				customer_details: {
+					first_name: nama,
+					email: email,
+				},
+				credit_card: {
+					secure: true,
+				},
+			}
 
-		snap.createTransaction(parameter).then((transaction) => {
-			let transactionToken = transaction.token
-			console.log("transactionToken:", transactionToken)
-			res.status(200).json({ token: transactionToken })
-		})
+			snap.createTransaction(parameter).then((transaction) => {
+				let transactionToken = transaction.token
+				console.log("transactionToken:", transactionToken)
+				res.status(200).json({ token: transactionToken })
+			})
+		} else {
+			res.status(200).json({ token: order_id })
+		}
 	} catch (err) {
 		console.error(err)
 	}
@@ -89,7 +93,7 @@ async function orderValidation(req, res) {
 		if (isValid.length > 0) {
 			await query(
 				`
-				UPDATE orders SET status_order = ? WHERE id = ? AND user_id = ?;`,
+				UPDATE orders SET status_order = ?, updated_at = NOW() WHERE id = ? AND user_id = ?;`,
 				[transaction_status, order_id, user_id]
 			)
 			return res.status(200).json({ paket: isValid[0] })

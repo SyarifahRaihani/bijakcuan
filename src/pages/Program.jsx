@@ -1,16 +1,33 @@
 import "./css/program.css"
 import { Link } from "react-router-dom"
+import { useNavigate } from "react-router-dom/dist"
 import { Helmet } from "react-helmet"
+import { useEffect } from "react"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import {
 	faListCheck,
 	faCommentDots,
 	faCircleCheck,
 } from "@fortawesome/free-solid-svg-icons"
+import { Cookies } from "react-cookie"
 import NavProgram from "../components/program/NavProgram"
 import CardProgram from "../components/program/CardProgram"
 
 export default function Program() {
+	const cookies = new Cookies()
+	const navigate = useNavigate()
+
+	useEffect(() => {
+		if (cookies.get("auth-order") !== undefined) {
+			if (
+				cookies.get("auth-order").split("-")[1] === "Bulanan" ||
+				cookies.get("auth-order").split("-")[1] === "Lifetime"
+			) {
+				navigate("/profil")
+			}
+		}
+	}, [])
+
 	return (
 		<main id="program">
 			<Helmet>
