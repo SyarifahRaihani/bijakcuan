@@ -82,7 +82,7 @@ export default function Checkout() {
 	const handleCheckout = async (total, paket) => {
 		let token = await getToken(total, paket)
 		if (total === 0 && paket === "Trial") {
-			cookies.set("auth-order", token, { secure: true })
+			cookies.set("auth-trial", token, { secure: true })
 			navigate("/checkout/sukses")
 		} else {
 			window.location.href = `https://app.sandbox.midtrans.com/snap/v3/redirection/${token}`

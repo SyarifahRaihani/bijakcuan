@@ -45,8 +45,17 @@ export default function Navbar() {
 								Beranda
 							</Link>
 						</li>
-						{cookies.get("auth-order") === undefined ||
-						cookies.get("auth-order").split("-")[1] === "Trial" ? (
+						{cookies.get("auth-order") ? (
+							<li className="nav-item">
+								<Link
+									className={`nav-link ${
+										route.pathname === "/profil" ? "active" : ""
+									}`}
+									to="/profil">
+									Kursus
+								</Link>
+							</li>
+						) : (
 							<li className="nav-item">
 								<Link
 									className={`nav-link ${
@@ -59,46 +68,7 @@ export default function Navbar() {
 									Program
 								</Link>
 							</li>
-						) : (
-							cookies.get("auth-order").split("-")[1] !== "Bulanan" ||
-							cookies.get("auth-order").split("-")[1] !==
-								"Lifetime"(
-									<li className="nav-item">
-										<Link
-											className={`nav-link ${
-												route.pathname === "/profil" ? "active" : ""
-											}`}
-											to="/profil">
-											Kursus
-										</Link>
-									</li>
-								)
 						)}
-						{/* && (cookies.get("auth-order").split("-")[1] !== "Bulanan" ||
-						cookies.get("auth-order").split("-")[1] !== "Lifetime") ? (
-						<li className="nav-item">
-							<Link
-								className={`nav-link ${
-									route.pathname === "/program" ||
-									route.pathname === "/checkout"
-										? "active"
-										: ""
-								}`}
-								to="/program">
-								Program
-							</Link>
-						</li>
-						) : (
-						<li className="nav-item">
-							<Link
-								className={`nav-link ${
-									route.pathname === "/profil" ? "active" : ""
-								}`}
-								to="/profil">
-								Kursus
-							</Link>
-						</li>
-						)} */}
 						<li className="nav-item">
 							<Link
 								className={`nav-link ${

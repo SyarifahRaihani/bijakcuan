@@ -23,8 +23,8 @@ async function order(req, res) {
 
 		await query(
 			`
-		  INSERT INTO orders (id, user_id, promo_id, paket, total, created_at)
-		  VALUES (?, ?, ?, ?, ?, NOW());`,
+		  INSERT INTO orders (id, user_id, promo_id, paket, total, created_at, status_order)
+		  VALUES (?, ?, ?, ?, ?, NOW(), "settlement");`,
 			[order_id, user_id, promo_id, paket, total]
 		)
 

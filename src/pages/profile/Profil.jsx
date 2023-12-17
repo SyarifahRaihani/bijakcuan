@@ -19,6 +19,7 @@ export default function Profil() {
 
 	const handleLogout = () => {
 		cookies.remove("auth-login", { path: "/" })
+		cookies.remove("auth-trial", { path: "/" })
 		cookies.remove("auth-order", { path: "/" })
 		navigate("/")
 		window.location.reload()

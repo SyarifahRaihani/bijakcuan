@@ -5,7 +5,7 @@ export default function KursusSaya() {
 	const cookies = new Cookies()
 	return (
 		<section id="kursusSaya">
-			{cookies.get("auth-order") ? (
+			{cookies.get("auth-order") || cookies.get("auth-trial") ? (
 				<div className="card container">
 					<div className="card-body">
 						<div className="row">
