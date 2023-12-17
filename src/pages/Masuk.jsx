@@ -15,8 +15,6 @@ export default function Masuk() {
 	const [wrongPass, setWrongPass] = useState("")
 
 	useEffect(() => {
-		const date = new Date()
-		console.log(date.toLocaleDateString())
 		if (cookies.get("auth-login")) {
 			navigate("/")
 		}
@@ -55,7 +53,12 @@ export default function Masuk() {
 
 					if (res.data.order) {
 						const order = res.data.order
-						cookies.set("auth-order", order, { secure: true })
+						const paket = order.split("-")[1]
+						if (paket === "Trial") {
+							cookies.set("auth-trial", order, { secure: true })
+						} else {
+							cookies.set("auth-order", order, { secure: true })
+						}
 					}
 
 					navigate("/")

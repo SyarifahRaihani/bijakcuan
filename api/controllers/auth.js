@@ -107,6 +107,8 @@ async function masuk(req, res) {
 				if (isCourse.length > 0) {
 					if (isCourse[isCourse.length - 1].status_order == "settlement") {
 						res.json({ token: token, order: isCourse[isCourse.length - 1].id })
+					} else {
+						res.json({ token })
 					}
 				} else {
 					res.json({ token })
