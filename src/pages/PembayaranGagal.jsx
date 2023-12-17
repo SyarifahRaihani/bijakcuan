@@ -19,7 +19,7 @@ export default function PembayaranSukses() {
 					<p className="mb-5 w-75 mx-auto">
 						Silahkan lakukan pembayaran pesanan Anda
 					</p>
-					<Link href={"/program"} className="btn btn-primary">
+					<Link to={"/program"} className="btn btn-primary">
 						Kembali
 					</Link>
 				</div>

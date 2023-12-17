@@ -13,6 +13,7 @@ export default function Daftar() {
 	const navigate = useNavigate()
 	const [failed, setFailed] = useState("")
 	const [success, setSuccess] = useState("")
+	const [phone, setPhone] = useState("+62")
 
 	useEffect(() => {
 		if (cookies.get("auth-login")) {
@@ -33,6 +34,20 @@ export default function Daftar() {
 			...prev,
 			[event.target.name]: event.target.value,
 		}))
+	}
+
+	const handleInputPhone = (event) => {
+		const inputValue = event.target.value
+
+		if (inputValue.startsWith("+62")) {
+			setPhone(inputValue)
+			setValues((prev) => ({
+				...prev,
+				[event.target.name]: inputValue,
+			}))
+		} else {
+			event.preventDefault()
+		}
 	}
 
 	const handleSubmit = async (event) => {
@@ -142,12 +157,13 @@ export default function Daftar() {
 											required
 										/>
 										<input
-											onChange={handleInput}
 											type="text"
 											name="phone"
 											id="phone"
 											className="form-control"
 											placeholder="No Telepon"
+											value={phone}
+											onChange={handleInputPhone}
 											required
 										/>
 										<button type="submit" className="btn btn-primary mt-3">

@@ -90,7 +90,7 @@ async function orderValidation(req, res) {
 			await query(
 				`
 				UPDATE orders SET status_order = ? WHERE id = ? AND user_id = ?;`,
-				[transaction_status, order_id]
+				[transaction_status, order_id, user_id]
 			)
 			return res.status(200).json({ paket: isValid[0] })
 		} else {

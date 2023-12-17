@@ -76,7 +76,15 @@ export default function Beranda() {
 				<div className="container">
 					<div className="row align-items-center">
 						<div className="col-lg-7">
-							<img src="/assets/beranda/trailer.png" alt="img" />
+							{/* <img src="/assets/beranda/trailer.png" alt="img" /> */}
+							<iframe
+								width="560"
+								height="315"
+								src="https://www.youtube.com/embed/z_rxu7LwChE?si=2lTP3RpO_-gUqrh2"
+								title="YouTube video player"
+								frameborder="0"
+								allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+								allowfullscreen></iframe>
 						</div>
 						<div className="col-lg-5">
 							<h3 className="mb-4">
@@ -118,7 +126,9 @@ export default function Beranda() {
 							</p>
 						</div>
 					</div>
-					<div className="row gap-5 gap-lg-0 text-center align-items-center">
+					<div
+						id="program"
+						className="row gap-5 gap-lg-0 text-center align-items-center">
 						{programData.map((program) => (
 							<div className="col-lg-4" key={program.id}>
 								<div
