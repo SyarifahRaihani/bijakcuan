@@ -7,6 +7,7 @@ import { useState, useEffect } from "react"
 import { Cookies } from "react-cookie"
 import { Modal } from "react-bootstrap"
 import Helmet from "react-helmet"
+import deskripsiData from "../data/courseDesc.json"
 
 export default function Kursus() {
 	const cookies = new Cookies()
@@ -18,10 +19,9 @@ export default function Kursus() {
 		},
 	])
 	const [courseTopic, setCourseTopic] = useState([])
+	const [courseDesc, setCourseDesc] = useState([])
 	const [course, setCourse] = useState([])
 	const [showModal, setShowModal] = useState(false)
-
-	const handleClose = () => setShowModal(false)
 
 	useEffect(() => {
 		const fetchData = async () => {
@@ -40,6 +40,15 @@ export default function Kursus() {
 
 		fetchData()
 	}, [])
+
+	useEffect(() => {
+		const response =
+			deskripsiData.find((entry) => entry.id === courseNow)?.deskripsi ||
+			"No deskripsi found"
+		setCourseDesc(response)
+	}, [courseNow])
+
+	const handleClose = () => setShowModal(false)
 
 	const handleCourse = (id) => {
 		setCourseNow(id)
@@ -137,17 +146,27 @@ export default function Kursus() {
 									allowfullscreen></iframe>
 							)}
 							<div className="card-body">
-								<div className="d-flex align-items-center justify-content-between">
-									<div>
+								<div className="row align-items-center justify-content-between">
+									<div className="col-lg-6">
 										<h5 className="card-title">{content[0].title}</h5>
 									</div>
-									<div>
-										<Link
-											id="diskusi"
-											to={"#"}
-											className="btn btn-outline-primary btn-sm mx-2 my-1">
-											Grup Diskusi
-										</Link>
+									<div className="col-lg">
+										{cookies.get("auth-trial") ? (
+											<Link
+												id="diskusi"
+												onClick={() => setShowModal(true)}
+												className="btn btn-outline-primary btn-sm mx-2 my-1">
+												Grup Diskusi
+											</Link>
+										) : (
+											<Link
+												id="diskusi"
+												to={"https://t.me/+Ba7dNdoucPViYjQ1"}
+												target="_blank"
+												className="btn btn-outline-primary btn-sm mx-2 my-1">
+												Grup Diskusi
+											</Link>
+										)}
 										<Link
 											id="lanjut"
 											onClick={handleNext}
@@ -157,7 +176,7 @@ export default function Kursus() {
 									</div>
 								</div>
 								<br />
-								{content[0].deskripsi}
+								{courseDesc}
 							</div>
 						</div>
 					</div>

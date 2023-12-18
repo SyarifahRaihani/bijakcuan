@@ -33,8 +33,10 @@ async function OrderValidate(order_id, status_code, transaction_status) {
 	)
 
 	if (response.status === 200) {
-		cookies.set("auth-order", response.paket, { secure: true })
-		navigate("/checkout/sukses")
+		cookies.set("auth-order", await response.paket, { secure: true })
+		if (cookies.get("auth-order") !== undefined) {
+			navigate("/checkout/sukses")
+		}
 	}
 }
 

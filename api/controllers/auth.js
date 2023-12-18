@@ -100,13 +100,13 @@ async function masuk(req, res) {
 				)
 
 				const isCourse = await query(
-					`SELECT status_order, id FROM orders WHERE user_id = ?;`,
+					`SELECT status_order, id, created_at FROM orders WHERE user_id = ? ORDER BY created_at DESC LIMIT 1;`,
 					[isUser[0].id]
 				)
 
 				if (isCourse.length > 0) {
-					if (isCourse[isCourse.length - 1].status_order == "settlement") {
-						res.json({ token: token, order: isCourse[isCourse.length - 1].id })
+					if (isCourse[0].status_order == "settlement") {
+						res.json({ token: token, order: isCourse[0].id })
 					} else {
 						res.json({ token })
 					}
@@ -126,7 +126,7 @@ async function masuk(req, res) {
 
 async function edit(req, res) {
 	const { username, name, email, phone, user } = await req.body
-	
+
 	if (
 		username === undefined ||
 		name === undefined ||
@@ -139,11 +139,11 @@ async function edit(req, res) {
 
 	try {
 		const isUserExist = await query(`SELECT * FROM users WHERE username = ?;`, [
-			(username === user.username ? "NULL" : username),
+			username === user.username ? "NULL" : username,
 		])
 
 		const isEmailExist = await query(`SELECT * FROM users WHERE email = ?;`, [
-			(email === user.email ? "NULL" : email),
+			email === user.email ? "NULL" : email,
 		])
 
 		if (isUserExist.length > 0 && isEmailExist.length > 0) {
@@ -175,8 +175,7 @@ async function edit(req, res) {
 	}
 }
 
-async function refreshToken(req, res)
-{
+async function refreshToken(req, res) {
 	const { id } = await req.body
 
 	if (id === undefined) {
@@ -184,10 +183,7 @@ async function refreshToken(req, res)
 	}
 
 	try {
-		const user = await query(
-			`SELECT * FROM users WHERE id = ?;`,
-			[id]
-		)
+		const user = await query(`SELECT * FROM users WHERE id = ?;`, [id])
 
 		if (user.length === 0) {
 			return res.status(200).json({

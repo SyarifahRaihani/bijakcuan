@@ -23,8 +23,8 @@ async function order(req, res) {
 
 		await query(
 			`
-		  INSERT INTO orders (id, user_id, promo_id, paket, total, created_at, status_order)
-		  VALUES (?, ?, ?, ?, ?, NOW(), "settlement");`,
+		  INSERT INTO orders (id, user_id, promo_id, paket, total, created_at)
+		  VALUES (?, ?, ?, ?, ?, NOW());`,
 			[order_id, user_id, promo_id, paket, total]
 		)
 
@@ -65,6 +65,11 @@ async function order(req, res) {
 				res.status(200).json({ token: transactionToken })
 			})
 		} else {
+			await query(
+				`
+				UPDATE orders SET status_order = "settlement" WHERE id = ? AND user_id = ?;`,
+				[order_id, user_id]
+			)
 			res.status(200).json({ token: order_id })
 		}
 	} catch (err) {
@@ -96,7 +101,7 @@ async function orderValidation(req, res) {
 				UPDATE orders SET status_order = ?, updated_at = NOW() WHERE id = ? AND user_id = ?;`,
 				[transaction_status, order_id, user_id]
 			)
-			return res.status(200).json({ paket: isValid[0] })
+			return res.status(200).json({ paket: order_id })
 		} else {
 			return res.status(400).json({ failed: "Order tidak ditemukan." })
 		}
@@ -105,4 +110,24 @@ async function orderValidation(req, res) {
 	}
 }
 
-module.exports = { order, orderValidation }
+async function orderGet(req, res) {
+	const { user_id } = await req.body
+	try {
+		const isCourse = await query(
+			`SELECT status_order, id, created_at, paket FROM orders WHERE user_id = ? ORDER BY created_at DESC LIMIT 1;`,
+			[user_id]
+		)
+
+		if (isCourse.length > 0) {
+			if (isCourse[0].status_order == "settlement") {
+				res.json({ order: isCourse[0].id, paket: isCourse[0].paket })
+			}
+		} else {
+			return res.status(400).json({ failed: "Order tidak ditemukan." })
+		}
+	} catch (err) {
+		console.error(err)
+	}
+}
+
+module.exports = { order, orderValidation, orderGet }

@@ -14,12 +14,12 @@ export default function Pengaturan() {
 		name: user.name,
 		email: user.email,
 		phone: user.phone,
-		user: user
+		user: user,
 	})
 
 	const [failed, setFailed] = useState("")
 
-	const [isFormChanged, setIsFormChanged] = useState(false);
+	const [isFormChanged, setIsFormChanged] = useState(false)
 
 	const handleInput = (event) => {
 		setValues((prev) => ({
@@ -27,7 +27,7 @@ export default function Pengaturan() {
 			[event.target.name]: event.target.value,
 		}))
 
-		setIsFormChanged(true);
+		setIsFormChanged(true)
 	}
 
 	const handleSubmit = async (event) => {
@@ -44,34 +44,37 @@ export default function Pengaturan() {
 					} else {
 						cookies.remove("auth-login", { path: "/" })
 						cookies.remove("auth-order", { path: "/" })
-	
+
 						const refreshValue = {
-							id: user.id
+							id: user.id,
 						}
-	
+
 						axios
-						.post(`${import.meta.env.VITE_API_URL}/api/v1/refreshToken/`, refreshValue)
-						.then((res) => {
-							const token = res.data.token
-							cookies.set("auth-login", token, { secure: true })
-							if (res.data.order) {
-								const order = res.data.order
-								cookies.set("auth-order", order, { secure: true })
-							}
-	
-							navigate("/profil")
-							window.location.reload()
-						})
-						.catch((error) => {
-							console.error("Error:", error)
-						})
+							.post(
+								`${import.meta.env.VITE_API_URL}/api/v1/refreshToken/`,
+								refreshValue
+							)
+							.then((res) => {
+								const token = res.data.token
+								cookies.set("auth-login", token, { secure: true })
+								if (res.data.order) {
+									const order = res.data.order
+									cookies.set("auth-order", order, { secure: true })
+								}
+
+								navigate("/profil")
+								window.location.reload()
+							})
+							.catch((error) => {
+								console.error("Error:", error)
+							})
 					}
 				})
 				.catch((error) => {
 					console.error("Error:", error)
 				})
 		} else {
-			console.log("No changes made.");
+			console.log("No changes made.")
 		}
 	}
 
@@ -84,7 +87,7 @@ export default function Pengaturan() {
 							<p>{failed}</p>
 						</div>
 					)}
-					<img
+					{/* <img
 						src="assets/profil/user.png"
 						alt="avatar"
 						className="rounded-circle img-fluid mt-3 mx-4"
@@ -95,8 +98,8 @@ export default function Pengaturan() {
 						className="btn btn-outline-dark btn-sm mt-3"
 						style={{ borderRadius: "10px" }}>
 						Upload Foto
-					</button>
-					<div className="row mt-4 mx-3">
+					</button> */}
+					<div className="row mx-3">
 						<div className="col-md-12 my-3">
 							<form onSubmit={handleSubmit}>
 								<label className="labels">Nama (Maks. 50 karakter)</label>
