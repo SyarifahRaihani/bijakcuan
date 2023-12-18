@@ -15,7 +15,9 @@ export default function Kursus() {
 	const [content, setContent] = useState([
 		{
 			id: 1,
-			title: "Pengantar",
+			title: "Selamat Datang Di Kelas!",
+			video_url: "https://www.youtube.com/embed/3uDpPN1NoH0",
+			topik_id: 1,
 		},
 	])
 	const [courseTopic, setCourseTopic] = useState([])
@@ -53,13 +55,15 @@ export default function Kursus() {
 	const handleCourse = (id) => {
 		setCourseNow(id)
 		const filteredCourse = course.filter((item) => item.id === id)
-
 		setContent(filteredCourse)
 	}
 
 	const handleNext = () => {
 		setCourseNow(courseNow + 1)
 		handleCourse(courseNow + 1)
+		if (cookies.get("auth-trial") && courseNow > 4) {
+			setShowModal(true)
+		}
 	}
 
 	return (
