@@ -1,13 +1,14 @@
 import axios from "axios"
 import Cta from "../components/cta"
 import "./css/promo.css"
+import { Cookies } from "react-cookie"
 import { Helmet } from "react-helmet"
 import { useState, useEffect } from "react"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faCopy, faCheck } from "@fortawesome/free-solid-svg-icons" 
-
+import { faCopy, faCheck } from "@fortawesome/free-solid-svg-icons"
 
 export default function Promo() {
+	const cookies = new Cookies()
 	const [copySuccess, setCopySuccess] = useState(null)
 
 	const copyToClipboard = (text, promoId) => {
@@ -17,7 +18,7 @@ export default function Promo() {
 
 	const getPromo = async () => {
 		const response = await axios.get(
-			`${import.meta.env.VITE_API_URL}/api/V1/promo`
+			`${import.meta.env.VITE_API_URL}/api/v1/promo`
 		)
 		setPromo(response.data)
 	}
@@ -40,11 +41,19 @@ export default function Promo() {
 						{promo.map((promo) => (
 							<div className="col-lg-3 col-md-6 mb-4" key={promo.id}>
 								<div className="card ">
-									<img
-										src={promo.image}
-										className="card-img-top"
-										alt={`Promo ${promo.id}`}
-									/>
+									{promo.image ? (
+										<img
+											src={promo.image}
+											className="card-img-top"
+											alt={`Promo ${promo.id}`}
+										/>
+									) : (
+										<img
+											src="/assets/promo/'image 2.png'"
+											className="card-img-top"
+											alt={`Promo`}
+										/>
+									)}
 									<div className="card-body">
 										<p className="fw-bold text-sm-start pb-3">
 											{promo.nama_promo}
@@ -84,7 +93,7 @@ export default function Promo() {
 					</div>
 				</div>
 			</div>
-			<Cta />
+			{!cookies.get("auth-order") && <Cta />}
 		</main>
 	)
 }

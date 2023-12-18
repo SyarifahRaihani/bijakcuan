@@ -93,7 +93,6 @@ export default function Kursus() {
 								className="height-56"></FontAwesomeIcon>
 							Kursus Saya
 						</Link>
-						{console.log(courseTopic)}
 						{courseTopic.map((topic) => (
 							<div className="card py-3" key={topic.id}>
 								<h6>{topic.title}</h6>
