@@ -149,7 +149,7 @@ export default function Kursus() {
 									<div className="col-lg-6">
 										<h5 className="card-title">{content[0].title}</h5>
 									</div>
-									<div className="col-lg">
+									<div className="col-lg d-flex justify-content-end">
 										{cookies.get("auth-trial") ? (
 											<Link
 												id="diskusi"
