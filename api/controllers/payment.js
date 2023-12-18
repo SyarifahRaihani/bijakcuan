@@ -133,17 +133,20 @@ async function orderGet(req, res) {
 async function getTransaksi(req, res) {
 	const user_id = req.params.user_id
 	try {
-		const result = await query("SELECT orders.id as order_id, users.id as user_id, users.name, orders.paket, orders.total, orders.created_at, orders.status_order FROM orders JOIN users ON orders.user_id = users.id WHERE users.id = ? ;", [user_id])
+		const result = await query(
+			"SELECT orders.id as order_id, users.id as user_id, users.name, orders.paket, orders.total, orders.created_at, orders.status_order FROM orders JOIN users ON orders.user_id = users.id WHERE users.id = ? ;",
+			[user_id]
+		)
 
 		if (result.length === 0) {
 			return res.status(404).json({ error: "Transaksi not found" })
 		}
 
-		res.json(result[0])
+		res.json(result)
 	} catch (error) {
 		console.error("Error fetching transaksi:", error)
 		res.status(500).json({ error: "Internal Server Error" })
 	}
 }
 
-module.exports = { order, orderValidation, orderGet, getTransaksi}
+module.exports = { order, orderValidation, orderGet, getTransaksi }
