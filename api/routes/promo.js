@@ -1,7 +1,7 @@
-const express = require('express');
+const express = require("express")
 const app = express()
-const { getAllPromos } = require('../controllers/promo');
+const { getAllPromos } = require("../controllers/promo")
 
-app.get('/promos', getAllPromos);
+app.get("/promo", getAllPromos)
 
-module.exports = app;
+module.exports = app
