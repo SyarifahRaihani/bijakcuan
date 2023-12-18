@@ -9,8 +9,12 @@ export default function KursusSaya() {
 				<div className="card container">
 					<div className="card-body">
 						<div className="row">
-							<div className="col-md-12 pt-1">
+							<div className="col-md-12 mb-3 d-flex justify-content-between align-items-center">
 								<h5>Selamat Belajar</h5>
+								<p className="text-end">
+									ID Pesanan Anda : <br />
+									{cookies.get("auth-order") || cookies.get("auth-trial")}
+								</p>
 							</div>
 							<div className="col-md-12">
 								<p>
