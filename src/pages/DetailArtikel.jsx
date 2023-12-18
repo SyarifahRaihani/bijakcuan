@@ -62,7 +62,8 @@ const DetailArtikel = () => {
 						className="d-flex align-items-center justify-content-start gap-2 mb-4">
 						<FontAwesomeIcon
 							icon={faArrowLeft}
-							className="height-56"></FontAwesomeIcon>
+							className="height-56">
+						</FontAwesomeIcon>
 						Kembali
 					</Link>
 					<h1>{artikel.judul}</h1>
