@@ -205,7 +205,7 @@ async function refreshToken(req, res) {
 
 			const isCourse = await query(
 				`SELECT status_order, id, created_at FROM orders WHERE user_id = ? ORDER BY created_at DESC LIMIT 1;`,
-				[isUser[0].id]
+				[user[0].id]
 			)
 
 			if (isCourse.length > 0) {
