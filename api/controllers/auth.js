@@ -204,13 +204,15 @@ async function refreshToken(req, res) {
 			)
 
 			const isCourse = await query(
-				`SELECT status_order, id FROM orders WHERE user_id = ?;`,
-				[user[0].id]
+				`SELECT status_order, id, created_at FROM orders WHERE user_id = ? ORDER BY created_at DESC LIMIT 1;`,
+				[isUser[0].id]
 			)
 
 			if (isCourse.length > 0) {
-				if (isCourse[isCourse.length - 1].status_order == "settlement") {
-					res.json({ token: token, order: isCourse[isCourse.length - 1].id })
+				if (isCourse[0].status_order == "settlement") {
+					res.json({ token: token, order: isCourse[0].id })
+				} else {
+					res.json({ token })
 				}
 			} else {
 				res.json({ token })
